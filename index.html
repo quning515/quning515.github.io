@@ -6,7 +6,7 @@
     <title>AI 智能简历筛选助手 - Gemma-3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- 文件解析库 -->
+    <!-- 解析库 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
@@ -20,7 +20,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- 顶部导航 -->
+    <!-- 导航栏 -->
     <header class="bg-white border-b sticky top-0 z-10 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2">
@@ -40,7 +40,7 @@
     </header>
 
     <main class="max-w-6xl mx-auto p-4 md:p-8">
-        <!-- 标签页 1: 职位描述 (JD) -->
+        <!-- Tab 1: 职位描述 -->
         <section id="job-description" class="tab-content active animate-in fade-in">
             <div class="bg-white rounded-2xl border p-6 shadow-sm">
                 <div class="flex items-center gap-2 mb-4 text-indigo-600">
@@ -61,7 +61,7 @@
             </div>
         </section>
 
-        <!-- 标签页 2: 上传区域 -->
+        <!-- Tab 2: 上传区域 -->
         <section id="upload" class="tab-content animate-in fade-in">
             <div id="drop-zone" class="flex flex-col items-center justify-center min-h-[400px] bg-white rounded-3xl border-2 border-dashed border-slate-200 p-12 text-center">
                 <div id="upload-idle">
@@ -70,8 +70,7 @@
                     </div>
                     <h2 class="text-2xl font-bold mb-2">批量上传简历</h2>
                     <p class="text-slate-500 mb-8 max-w-md mx-auto">
-                        支持 <b>PDF</b>、<b>Excel (xlsx/xls)</b> 以及 <b>TXT</b> 文本格式。<br/>
-                        AI 将自动提取信息，并基于最新模型进行评估。
+                        支持 <b>PDF</b>、<b>Excel</b> 以及 <b>TXT</b> 格式。
                     </p>
                     <input type="file" id="file-input" multiple accept=".pdf,.xlsx,.xls,.txt" class="hidden">
                     <button onclick="document.getElementById('file-input').click()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-10 py-4 rounded-xl font-bold shadow-lg shadow-indigo-100 transition-all active:scale-95">
@@ -79,15 +78,9 @@
                     </button>
                 </div>
 
-                <!-- 处理中状态 -->
                 <div id="upload-processing" class="hidden flex flex-col items-center gap-4">
-                    <div class="relative">
-                        <i data-lucide="loader-2" class="w-16 h-16 text-indigo-600 loading-spinner"></i>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i data-lucide="cpu" class="w-6 h-6 text-indigo-400"></i>
-                        </div>
-                    </div>
-                    <p class="text-lg font-medium text-slate-700">Gemma AI 正在分析简历...</p>
+                    <i data-lucide="loader-2" class="w-16 h-16 text-indigo-600 loading-spinner"></i>
+                    <p class="text-lg font-medium text-slate-700">Gemma AI 正在极速分析中...</p>
                     <div class="w-64 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 0%"></div>
                     </div>
@@ -96,25 +89,21 @@
             </div>
         </section>
 
-        <!-- 标签页 3: 筛选结果 -->
+        <!-- Tab 3: 筛选结果 -->
         <section id="results" class="tab-content animate-in fade-in">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div class="flex justify-between items-end mb-8">
                 <div>
                     <h2 class="text-2xl font-black text-slate-800">评估筛选清单</h2>
-                    <p class="text-slate-500 text-sm mt-1" id="result-count">当前已完成 0 份评估</p>
+                    <p class="text-slate-500 text-sm" id="result-count">当前已完成 0 份评估</p>
                 </div>
-                <div class="flex gap-2">
-                    <button onclick="clearResults()" class="text-slate-500 hover:text-red-500 px-4 py-2 rounded-xl text-sm font-medium border border-slate-200 hover:border-red-200 bg-white transition-all flex items-center gap-2">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i> 清除数据
-                    </button>
-                </div>
+                <button onclick="clearResults()" class="text-slate-500 hover:text-red-500 px-4 py-2 rounded-xl text-sm border bg-white transition-all flex items-center gap-2">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> 清除记录
+                </button>
             </div>
             <div id="results-list" class="grid gap-6">
-                <!-- 空状态展示 -->
                 <div class="text-center py-24 bg-white rounded-3xl border border-slate-100 shadow-sm" id="empty-state">
                     <i data-lucide="inbox" class="mx-auto text-slate-200 mb-4 w-12 h-12"></i>
                     <p class="text-slate-400 font-medium">暂无分析数据</p>
-                    <button onclick="switchTab('upload')" class="mt-4 text-indigo-600 font-bold hover:underline">现在去上传简历</button>
                 </div>
             </div>
         </section>
@@ -124,11 +113,10 @@
         // --- 配置区 ---
         const apiKey = "AIzaSyD52sNOXplSIh2yS9QGbzWNymvcFwApkhE";
         const modelId = "gemma-3-27b-it";
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`;
 
         let results = [];
 
-        // 初始化
         window.onload = () => {
             lucide.createIcons();
             if (window.pdfjsLib) {
@@ -136,23 +124,18 @@
             }
         };
 
-        // 切换导航
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.dataset.tab === tabId) {
-                    btn.classList.add('bg-white', 'shadow-sm', 'text-indigo-600');
-                    btn.classList.remove('text-slate-500');
-                } else {
-                    btn.classList.remove('bg-white', 'shadow-sm', 'text-indigo-600');
-                    btn.classList.add('text-slate-500');
-                }
+                const isActive = btn.dataset.tab === tabId;
+                btn.classList.toggle('bg-white', isActive);
+                btn.classList.toggle('shadow-sm', isActive);
+                btn.classList.toggle('text-indigo-600', isActive);
+                btn.classList.toggle('text-slate-500', !isActive);
             });
         }
 
-        // --- 文件处理 ---
         async function parsePDF(file) {
             const arrayBuffer = await file.arrayBuffer();
             const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
@@ -168,59 +151,72 @@
         async function parseExcel(file) {
             const arrayBuffer = await file.arrayBuffer();
             const workbook = XLSX.read(arrayBuffer);
-            const firstSheetName = workbook.SheetNames[0];
-            const firstSheet = workbook.Sheets[firstSheetName];
-            return XLSX.utils.sheet_to_txt(firstSheet);
+            return XLSX.utils.sheet_to_txt(workbook.Sheets[workbook.SheetNames[0]]);
         }
 
-        // --- AI API 调用 (带重试逻辑) ---
-        async function callAI(resumeText, jdText, retries = 5) {
+        // 提取 JSON 的安全函数（防止模型输出 Markdown 代码块）
+        function extractJSON(str) {
+            try {
+                const match = str.match(/\{[\s\S]*\}/);
+                return match ? JSON.parse(match[0]) : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function callAI(resumeText, jdText, retries = 3) {
             const prompt = `你是一名资深的 HR。请分析以下简历内容是否符合职位的要求。
-            
+
 职位要求：
 ${jdText}
 
 简历内容：
 ${resumeText}
 
-请务必严格以 JSON 格式输出，不要包含任何额外的描述文字。JSON 结构如下：
+请务必只输出一个合法的 JSON 对象，不包含代码块标记或任何额外文字。结构如下：
 {
   "name": "姓名",
-  "score": 匹配分数(0-100),
-  "key_skills": ["技能1", "技能2", "技能3"],
+  "score": 匹配分数(数字0-100),
+  "key_skills": ["技能1", "技能2"],
   "summary": "匹配度简评",
   "pros": ["优势1", "优势2"],
-  "cons": ["不足或待考察1", "不足或待考察2"]
+  "cons": ["不足或待考察1"]
 }`;
 
             const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: { responseMimeType: "application/json" }
+                contents: [{ parts: [{ text: prompt }] }]
+                // 暂时移除 generationConfig 里的 mimeType 校验，以兼容某些版本的 API 终端
             };
 
             let delay = 1000;
             for (let i = 0; i < retries; i++) {
                 try {
-                    const response = await fetch(url, {
+                    const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
                     
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    if (!response.ok) {
+                        const errorBody = await response.json();
+                        throw new Error(`API错误: ${response.status} - ${JSON.stringify(errorBody)}`);
+                    }
                     
                     const data = await response.json();
                     const textContent = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                    return JSON.parse(textContent);
+                    const jsonResult = extractJSON(textContent);
+                    
+                    if (!jsonResult) throw new Error("无法从 AI 响应中解析 JSON");
+                    return jsonResult;
                 } catch (err) {
+                    console.warn(`第 ${i+1} 次尝试失败:`, err.message);
                     if (i === retries - 1) throw err;
                     await new Promise(r => setTimeout(r, delay));
-                    delay *= 2; // 指数退避
+                    delay *= 2;
                 }
             }
         }
 
-        // 上传按钮监听
         document.getElementById('file-input').addEventListener('change', async (e) => {
             const files = Array.from(e.target.files);
             if (files.length === 0) return;
@@ -236,19 +232,14 @@ ${resumeText}
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                const progress = ((i / files.length) * 100).toFixed(0);
-                progressBar.style.width = `${progress}%`;
-                statusText.innerText = `[${i+1}/${files.length}] 正在解析并分析: ${file.name}`;
+                progressBar.style.width = `${((i / files.length) * 100)}%`;
+                statusText.innerText = `正在分析 (${i+1}/${files.length}): ${file.name}`;
 
                 try {
                     let content = "";
-                    if (file.type === "application/pdf") {
-                        content = await parsePDF(file);
-                    } else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
-                        content = await parseExcel(file);
-                    } else {
-                        content = await file.text();
-                    }
+                    if (file.type === "application/pdf") content = await parsePDF(file);
+                    else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) content = await parseExcel(file);
+                    else content = await file.text();
 
                     const analysis = await callAI(content, jdText);
                     results.unshift({
@@ -259,21 +250,29 @@ ${resumeText}
                     });
                     renderResults();
                 } catch (error) {
-                    console.error(`分析文件 ${file.name} 失败:`, error);
+                    console.error(error);
+                    results.unshift({
+                        id: Date.now(),
+                        name: "分析失败",
+                        fileName: file.name,
+                        score: 0,
+                        summary: `分析出错: ${error.message}`,
+                        key_skills: [], pros: [], cons: ["请检查 API Key 权限或网络状态"],
+                        timestamp: new Date().toLocaleTimeString()
+                    });
+                    renderResults();
                 }
             }
 
-            // 完成处理
             progressBar.style.width = `100%`;
             setTimeout(() => {
                 idleUI.classList.remove('hidden');
                 processingUI.classList.add('hidden');
                 switchTab('results');
-                e.target.value = ""; // 重置文件输入
+                e.target.value = "";
             }, 500);
         });
 
-        // --- 渲染 UI ---
         function renderResults() {
             const list = document.getElementById('results-list');
             const emptyState = document.getElementById('empty-state');
@@ -287,55 +286,41 @@ ${resumeText}
             emptyState.classList.add('hidden');
 
             list.innerHTML = results.map(res => `
-                <div class="bg-white border rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border-slate-100 group">
+                <div class="bg-white border rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all border-slate-100">
                     <div class="p-6 md:p-8">
-                        <!-- 头部信息 -->
                         <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                             <div class="flex items-center gap-4">
-                                <div class="bg-indigo-600 text-white p-3 rounded-2xl shadow-lg shadow-indigo-100 group-hover:scale-110 transition-transform">
+                                <div class="bg-indigo-600 text-white p-3 rounded-2xl shadow-lg shadow-indigo-100">
                                     <i data-lucide="user"></i>
                                 </div>
                                 <div>
                                     <h3 class="text-xl font-black text-slate-800">${res.name || '姓名未识别'}</h3>
-                                    <p class="text-xs text-slate-400 flex items-center gap-1.5 mt-1 font-medium">
-                                        <i data-lucide="file" class="w-3 h-3"></i> ${res.fileName} • ${res.timestamp}
-                                    </p>
+                                    <p class="text-xs text-slate-400 mt-1 font-medium">${res.fileName} • ${res.timestamp}</p>
                                 </div>
                             </div>
-                            <div class="flex flex-col items-center justify-center bg-indigo-50 border border-indigo-100 rounded-2xl px-6 py-3 min-w-[100px]">
+                            <div class="flex flex-col items-center justify-center bg-indigo-50 border border-indigo-100 rounded-2xl px-6 py-3">
                                 <span class="text-3xl font-black text-indigo-600 leading-none">${res.score}</span>
                                 <span class="text-[10px] font-bold text-indigo-400 uppercase mt-1 tracking-widest">匹配指数</span>
                             </div>
                         </div>
-
-                        <!-- 总结 -->
-                        <div class="bg-slate-50/80 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border border-slate-100 italic">
-                            <span class="text-indigo-600 font-bold not-italic mr-1">AI 评估:</span>
-                            "${res.summary}"
+                        <div class="bg-slate-50/80 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border italic">
+                            <span class="text-indigo-600 font-bold not-italic">AI 评价:</span> "${res.summary}"
                         </div>
-
-                        <!-- 优劣分析 -->
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div class="space-y-3">
-                                <h4 class="text-xs font-bold text-green-600 uppercase flex items-center gap-2">
-                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i> 核心优势
-                                </h4>
-                                <div class="flex flex-col gap-2">
+                            <div>
+                                <h4 class="text-xs font-bold text-green-600 uppercase mb-3 flex items-center gap-2">核心优势</h4>
+                                <div class="space-y-2">
                                     ${res.pros.map(p => `<div class="text-sm bg-green-50/50 text-slate-700 px-4 py-2 rounded-xl border border-green-100/50">${p}</div>`).join('')}
                                 </div>
                             </div>
-                            <div class="space-y-3">
-                                <h4 class="text-xs font-bold text-amber-600 uppercase flex items-center gap-2">
-                                    <i data-lucide="help-circle" class="w-4 h-4"></i> 待考量/不足
-                                </h4>
-                                <div class="flex flex-col gap-2">
+                            <div>
+                                <h4 class="text-xs font-bold text-amber-600 uppercase mb-3 flex items-center gap-2">待考察</h4>
+                                <div class="space-y-2">
                                     ${res.cons.map(c => `<div class="text-sm bg-amber-50/50 text-slate-700 px-4 py-2 rounded-xl border border-amber-100/50">${c}</div>`).join('')}
                                 </div>
                             </div>
                         </div>
-
-                        <!-- 技能标签 -->
-                        <div class="mt-8 pt-6 border-t border-slate-50 flex flex-wrap gap-2">
+                        <div class="mt-8 pt-6 border-t flex flex-wrap gap-2">
                             ${res.key_skills.map(s => `<span class="text-[11px] font-black bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg border border-indigo-100 uppercase tracking-tight">${s}</span>`).join('')}
                         </div>
                     </div>
@@ -348,7 +333,6 @@ ${resumeText}
             if(confirm("确定要清空所有筛选记录吗？")) {
                 results = [];
                 renderResults();
-                switchTab('upload');
             }
         }
     </script>
