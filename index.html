@@ -80,7 +80,7 @@
 
                 <div id="upload-processing" class="hidden flex flex-col items-center gap-4">
                     <i data-lucide="loader-2" class="w-16 h-16 text-indigo-600 loading-spinner"></i>
-                    <p class="text-lg font-medium text-slate-700">Gemma AI 正在极速分析中...</p>
+                    <p class="text-lg font-medium text-slate-700">Gemma AI 正在解析简历内容...</p>
                     <div class="w-64 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 0%"></div>
                     </div>
@@ -113,6 +113,7 @@
         // --- 配置区 ---
         const apiKey = "AIzaSyD52sNOXplSIh2yS9QGbzWNymvcFwApkhE";
         const modelId = "gemma-3-27b-it";
+        // 使用 v1beta 路径
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${apiKey}`;
 
         let results = [];
@@ -154,18 +155,20 @@
             return XLSX.utils.sheet_to_txt(workbook.Sheets[workbook.SheetNames[0]]);
         }
 
-        // 提取 JSON 的安全函数（防止模型输出 Markdown 代码块）
         function extractJSON(str) {
             try {
+                // 尝试匹配最外层的 JSON
                 const match = str.match(/\{[\s\S]*\}/);
-                return match ? JSON.parse(match[0]) : null;
+                if (match) return JSON.parse(match[0]);
+                return null;
             } catch (e) {
+                console.error("JSON解析失败:", e);
                 return null;
             }
         }
 
         async function callAI(resumeText, jdText, retries = 3) {
-            const prompt = `你是一名资深的 HR。请分析以下简历内容是否符合职位的要求。
+            const prompt = `你是一名资深的 HR。请分析以下简历是否符合职位要求。
 
 职位要求：
 ${jdText}
@@ -173,19 +176,29 @@ ${jdText}
 简历内容：
 ${resumeText}
 
-请务必只输出一个合法的 JSON 对象，不包含代码块标记或任何额外文字。结构如下：
+请务必以 JSON 格式回复，不要有任何 Markdown 代码块标签。结构如下：
 {
   "name": "姓名",
-  "score": 匹配分数(数字0-100),
+  "score": 匹配分(0-100),
   "key_skills": ["技能1", "技能2"],
-  "summary": "匹配度简评",
-  "pros": ["优势1", "优势2"],
-  "cons": ["不足或待考察1"]
+  "summary": "匹配简评",
+  "pros": ["优势"],
+  "cons": ["不足"]
 }`;
 
             const payload = {
-                contents: [{ parts: [{ text: prompt }] }]
-                // 暂时移除 generationConfig 里的 mimeType 校验，以兼容某些版本的 API 终端
+                contents: [{ parts: [{ text: prompt }] }],
+                // 增加安全设置，防止简历中的个人信息触发 400 错误
+                safetySettings: [
+                    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+                ],
+                generationConfig: {
+                    temperature: 0.1, // 降低随机性以获取更稳定的 JSON
+                    maxOutputTokens: 1024
+                }
             };
 
             let delay = 1000;
@@ -197,19 +210,22 @@ ${resumeText}
                         body: JSON.stringify(payload)
                     });
                     
+                    const data = await response.json();
+
                     if (!response.ok) {
-                        const errorBody = await response.json();
-                        throw new Error(`API错误: ${response.status} - ${JSON.stringify(errorBody)}`);
+                        // 如果还是 400，把详细错误抛出来便于排查
+                        throw new Error(data.error?.message || `HTTP ${response.status}`);
                     }
                     
-                    const data = await response.json();
                     const textContent = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (!textContent) throw new Error("AI 响应内容为空");
+
                     const jsonResult = extractJSON(textContent);
+                    if (!jsonResult) throw new Error("无法解析 AI 返回的 JSON");
                     
-                    if (!jsonResult) throw new Error("无法从 AI 响应中解析 JSON");
                     return jsonResult;
                 } catch (err) {
-                    console.warn(`第 ${i+1} 次尝试失败:`, err.message);
+                    console.warn(`第 ${i+1} 次失败:`, err.message);
                     if (i === retries - 1) throw err;
                     await new Promise(r => setTimeout(r, delay));
                     delay *= 2;
@@ -233,13 +249,16 @@ ${resumeText}
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
                 progressBar.style.width = `${((i / files.length) * 100)}%`;
-                statusText.innerText = `正在分析 (${i+1}/${files.length}): ${file.name}`;
+                statusText.innerText = `Gemma 正在阅读: ${file.name}`;
 
                 try {
                     let content = "";
                     if (file.type === "application/pdf") content = await parsePDF(file);
                     else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) content = await parseExcel(file);
                     else content = await file.text();
+
+                    // 处理简历内容长度，防止超出模型窗口导致 400
+                    if (content.length > 8000) content = content.substring(0, 8000) + "...";
 
                     const analysis = await callAI(content, jdText);
                     results.unshift({
@@ -250,14 +269,14 @@ ${resumeText}
                     });
                     renderResults();
                 } catch (error) {
-                    console.error(error);
+                    console.error("处理失败:", error);
                     results.unshift({
                         id: Date.now(),
                         name: "分析失败",
                         fileName: file.name,
                         score: 0,
-                        summary: `分析出错: ${error.message}`,
-                        key_skills: [], pros: [], cons: ["请检查 API Key 权限或网络状态"],
+                        summary: `错误信息: ${error.message}`,
+                        key_skills: [], pros: [], cons: ["可能是 API 请求过于频繁或内容触发了安全过滤"],
                         timestamp: new Date().toLocaleTimeString()
                     });
                     renderResults();
@@ -294,7 +313,7 @@ ${resumeText}
                                     <i data-lucide="user"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-black text-slate-800">${res.name || '姓名未识别'}</h3>
+                                    <h3 class="text-xl font-black text-slate-800">${res.name || '未知候选人'}</h3>
                                     <p class="text-xs text-slate-400 mt-1 font-medium">${res.fileName} • ${res.timestamp}</p>
                                 </div>
                             </div>
@@ -304,17 +323,17 @@ ${resumeText}
                             </div>
                         </div>
                         <div class="bg-slate-50/80 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border italic">
-                            <span class="text-indigo-600 font-bold not-italic">AI 评价:</span> "${res.summary}"
+                            <span class="text-indigo-600 font-bold not-italic">AI 点评:</span> "${res.summary}"
                         </div>
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <h4 class="text-xs font-bold text-green-600 uppercase mb-3 flex items-center gap-2">核心优势</h4>
+                                <h4 class="text-xs font-bold text-green-600 uppercase mb-3 flex items-center gap-2">优势</h4>
                                 <div class="space-y-2">
                                     ${res.pros.map(p => `<div class="text-sm bg-green-50/50 text-slate-700 px-4 py-2 rounded-xl border border-green-100/50">${p}</div>`).join('')}
                                 </div>
                             </div>
                             <div>
-                                <h4 class="text-xs font-bold text-amber-600 uppercase mb-3 flex items-center gap-2">待考察</h4>
+                                <h4 class="text-xs font-bold text-amber-600 uppercase mb-3 flex items-center gap-2">不足</h4>
                                 <div class="space-y-2">
                                     ${res.cons.map(c => `<div class="text-sm bg-amber-50/50 text-slate-700 px-4 py-2 rounded-xl border border-amber-100/50">${c}</div>`).join('')}
                                 </div>
@@ -330,7 +349,7 @@ ${resumeText}
         }
 
         function clearResults() {
-            if(confirm("确定要清空所有筛选记录吗？")) {
+            if(confirm("确定要清空吗？")) {
                 results = [];
                 renderResults();
             }
