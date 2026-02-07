@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心动模拟器 - 铂金恋人</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+        
+        :root {
+            --accent-silver: #d1d5db;
+            --deep-blue: #1a1c2c;
+            --neon-blue: #4da6ff;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #0a0a0c;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* 动态背景背景 */
+        .bg-glow {
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #000 70%);
+            z-index: -1;
+            animation: rotateGlow 20s linear infinite;
+        }
+
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 450px;
+            height: 95vh;
+            background: rgba(15, 15, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+
+        .stats-bar {
+            padding: 25px 20px 15px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 20;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent-silver);
+        }
+
+        .character-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        /* 角色呼吸与微晃 */
+        .avatar-wrapper {
+            width: 100%;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            animation: idleFloat 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(77, 166, 255, 0.15));
+            z-index: 5;
+        }
+
+        @keyframes idleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        .dialogue-box {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%);
+            padding: 30px 25px;
+            width: 100%;
+            min-height: 160px;
+            position: relative;
+            z-index: 10;
+        }
+
+        #dialogue-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e5e7eb;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .options-area {
+            padding: 0 25px 30px;
+            background: rgba(0,0,0,0.9);
+            display: grid;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .btn-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-option::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; height: 100%; width: 0;
+            background: var(--neon-blue);
+            opacity: 0.1;
+            transition: width 0.3s;
+        }
+
+        .btn-option:hover {
+            border-color: var(--neon-blue);
+            transform: translateX(8px);
+        }
+
+        .btn-option:hover::before {
+            width: 100%;
+        }
+
+        /* 粒子 */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 100;
+            animation: particleAnim 1s ease-out forwards;
+        }
+
+        @keyframes particleAnim {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="game-container" id="game-ui">
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="mr-1">Bonding</span> <span id="stat-love" class="font-bold text-white">75</span>
+        </div>
+        <div class="stat-item">
+            <span class="mr-1">Hype</span> <span id="stat-mood" class="font-bold text-white">80</span>
+        </div>
+    </div>
+
+    <div class="character-area">
+        <div class="avatar-wrapper" id="avatar">
+            <!-- 进化的二次元帅哥 SVG (强化王一博特征) -->
+            <svg width="340" height="450" viewBox="0 0 200 250" id="bf-svg">
+                <defs>
+                    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#000;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- 身体与衣服 -->
+                <path d="M30 250 C50 210 150 210 170 250" fill="#111" />
+                <path d="M75 195 L75 220 L125 220 L125 195" fill="#f5d6c6"/> <!-- 脖子 -->
+                <path d="M70 215 C85 210 115 210 130 215" fill="none" stroke="#222" stroke-width="1"/> <!-- 喉结线条 -->
+                
+                <!-- 脸部 (锐利下颌线) -->
+                <path d="M60 85 C60 160 85 195 100 198 C115 195 140 160 140 85 Z" fill="#fcece4"/>
+                
+                <!-- 阴影 -->
+                <path d="M60 85 C60 150 85 185 100 188 C115 185 125 160 125 85 Z" fill="#000" opacity="0.03"/>
+
+                <!-- 眼睛 (标志性冷感单眼皮) -->
+                <g id="eyes">
+                    <path id="eye-l" d="M72 120 Q85 114 96 119" stroke="#222" stroke-width="2.5" fill="none"/>
+                    <path id="eye-r" d="M104 119 Q115 114 128 120" stroke="#222" stroke-width="2.5" fill="none"/>
+                    <!-- 眼神光 -->
+                    <circle cx="84" cy="122" r="2.8" fill="#111"/>
+                    <circle cx="116" cy="122" r="2.8" fill="#111"/>
+                    <circle cx="85" cy="121" r="0.8" fill="#fff" opacity="0.6"/>
+                    <circle cx="117" cy="121" r="0.8" fill="#fff" opacity="0.6"/>
+                </g>
+
+                <!-- 灵魂泪痣 -->
+                <circle cx="125" cy="130" r="1.2" fill="#3a2e2a" opacity="0.7"/>
+
+                <!-- 鼻子 (挺拔) -->
+                <path d="M98 135 L100 158 L104 156" stroke="#d4b4a6" fill="none" stroke-width="1.2"/>
+
+                <!-- 嘴巴 (薄唇) -->
+                <path id="mouth" d="M92 178 Q100 181 108 178" stroke="#a67c6d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+                <!-- 发型 (增加碎发感/微湿发) -->
+                <g id="hair" fill="url(#hairGrad)">
+                    <path d="M50 90 C40 30 110 15 150 75 C155 100 145 120 140 125 C135 90 120 75 100 75 C80 75 65 95 60 125 Z"/>
+                    <!-- 额前刘海 -->
+                    <path d="M65 75 L55 115 Q65 100 75 105 Z"/>
+                    <path d="M110 75 L125 105 Q115 95 105 100 Z"/>
+                    <!-- 碎发丝 -->
+                    <path d="M85 40 Q95 30 115 50" fill="none" stroke="#444" stroke-width="0.5"/>
+                </g>
+
+                <!-- 饰品 (银色项链/耳环) -->
+                <circle cx="141" cy="142" r="1.5" fill="#silver"/>
+                <path d="M80 220 Q100 235 120 220" fill="none" stroke="#666" stroke-width="1.5" opacity="0.5"/>
+            </svg>
+        </div>
+        
+        <div class="dialogue-box">
+            <h2 id="char-name" class="text-xl font-bold mb-2 tracking-[0.3em] text-white flex items-center">
+                谢远 <span class="ml-3 text-[10px] border border-blue-400 px-2 py-0.5 rounded text-blue-400">PRO RIDER</span>
+            </h2>
+            <p id="dialogue-text">...</p>
+        </div>
+    </div>
+
+    <div class="options-area" id="options-container"></div>
+</div>
+
+<script>
+    const state = {
+        love: 75,
+        mood: 80,
+        currentNode: 'start'
+    };
+
+    const story = {
+        start: {
+            text: "（他刚从摩托车上下来，摘下头盔，几缕湿润的发丝贴在额前。他随手把头盔挂在车把上，看向你）还没回去？这地方不好打车，上来，我送你。",
+            options: [
+                { text: "“你的车速太快了，我害怕。”", next: "scared", love: +5, mood: +10 },
+                { text: "直接跨上后座，抱住他的腰", next: "hug_back", love: +15, mood: +20 },
+                { text: "“这么晚还去练滑板吗？”", next: "skate", love: +8, mood: +12 }
+            ]
+        },
+        scared: {
+            text: "（他轻笑一声，眼神柔和了一些）啧，胆子这么小。放心，载着你，我不会拧大油门的。扶好了。",
+            options: [
+                { text: "抓住他的外套边缘", next: "ride", love: +10, mood: +5 },
+                { text: "“那你一定要慢点。”", next: "ride", love: +5, mood: +5 }
+            ]
+        },
+        hug_back: {
+            text: "（他身体僵了一瞬，随后发出一声低笑，反手按了一下你的手臂）坐稳了，抓紧。要是摔了，我可不负责。",
+            options: [
+                { text: "“你会保护好我的。”", next: "ride", love: +12, mood: +15 }
+            ]
+        },
+        skate: {
+            text: "（他看了一眼滑板包）嗯，约了几个朋友。不过先把你送回去比较重要。走吧，别废话。",
+            options: [
+                { text: "“我想看你滑滑板。”", next: "watch", love: +15, mood: +25 }
+            ]
+        },
+        ride: {
+            text: "（晚风掠过，他身上有淡淡的薄荷草香味。路灯光影在他侧脸上飞速流逝）饿不饿？带你去吃那家深夜食堂？",
+            options: [
+                { text: "“好啊，我想吃那里的拉面。”", next: "food", love: +10, mood: +10 },
+                { text: "“只要是你选的都好。”", next: "food", love: +15, mood: +10 }
+            ]
+        },
+        watch: {
+            text: "（他挑了挑眉，眼神里闪过一丝骄傲）想看？行吧，一会儿看仔细了。别到时候尖叫太大声。",
+            options: [
+                { text: "“谢老师请开始你的表演。”", next: "start", love: +10, mood: +20 }
+            ]
+        },
+        food: {
+            text: "（他熟练地停好车，细心地帮你解开头盔扣）下车。这家店味道不错，你应该会喜欢。",
+            options: [
+                { text: "（盯着他解扣子的手指看）", next: "start", love: +10, mood: +5 }
+            ]
+        }
+    };
+
+    function updateUI() {
+        document.getElementById('stat-love').innerText = state.love;
+        document.getElementById('stat-mood').innerText = state.mood;
+        
+        const node = story[state.currentNode];
+        const textEl = document.getElementById('dialogue-text');
+        
+        textEl.innerText = "";
+        let i = 0;
+        function typeWriter() {
+            if (i < node.text.length) {
+                textEl.innerText += node.text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 35);
+            }
+        }
+        typeWriter();
+
+        const container = document.getElementById('options-container');
+        container.innerHTML = '';
+        node.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-option';
+            btn.innerText = opt.text;
+            btn.onclick = () => {
+                state.love = Math.max(0, Math.min(100, state.love + opt.love));
+                state.mood = Math.max(0, Math.min(100, state.mood + opt.mood));
+                state.currentNode = opt.next;
+                if(opt.love > 0) createParticles('✨');
+                updateUI();
+            };
+            container.appendChild(btn);
+        });
+
+        updateVisuals();
+    }
+
+    function updateVisuals() {
+        const mouth = document.getElementById('mouth');
+        const bfSvg = document.getElementById('bf-svg');
+        
+        // 情感反馈
+        if (state.mood > 90) {
+            mouth.setAttribute('d', 'M 92 178 Q 100 184 108 178'); // 极其隐秘的笑
+        } else if (state.mood < 40) {
+            mouth.setAttribute('d', 'M 95 180 L 105 180'); // 一条直线，冷漠
+        } else {
+            mouth.setAttribute('d', 'M 92 178 Q 100 181 108 178'); // 默认
+        }
+    }
+
+    function createParticles(char) {
+        for(let i=0; i<5; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerText = char;
+            p.style.left = '50%';
+            p.style.top = '40%';
+            p.style.setProperty('--tx', (Math.random() * 200 - 100) + 'px');
+            p.style.setProperty('--ty', (Math.random() * -200 - 50) + 'px');
+            p.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1000);
+        }
+    }
+
+    window.onload = updateUI;
+</script>
+
+</body>
+</html>
