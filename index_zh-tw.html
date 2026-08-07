@@ -61,23 +61,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Noto Sans TC', sans-serif; }
-        .lang-dropdown { position: relative; display: inline-block; }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .lang-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
         .lang-menu {
             display: none;
             position: absolute;
             right: 0;
             top: calc(100% + 6px);
             background: #1e1b4b;
-            border: 1px solid rgba(99,102,241,0.3);
+            border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 12px;
             min-width: 160px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             z-index: 100;
             overflow: hidden;
         }
+
         .lang-dropdown:hover .lang-menu,
-        .lang-dropdown:focus-within .lang-menu { display: block; }
+        .lang-dropdown:focus-within .lang-menu {
+            display: block;
+        }
+
         .lang-menu a {
             display: flex;
             align-items: center;
@@ -89,8 +100,17 @@
             transition: background 0.15s;
             font-weight: 500;
         }
-        .lang-menu a:hover { background: rgba(99,102,241,0.2); color: #fff; }
-        .lang-menu a.active { background: rgba(99,102,241,0.3); color: #fff; font-weight: 700; }
+
+        .lang-menu a:hover {
+            background: rgba(99, 102, 241, 0.2);
+            color: #fff;
+        }
+
+        .lang-menu a.active {
+            background: rgba(99, 102, 241, 0.3);
+            color: #fff;
+            font-weight: 700;
+        }
     </style>
 </head>
 
@@ -113,7 +133,8 @@
 
                 <!-- Language Switcher -->
                 <div class="lang-dropdown">
-                    <button class="flex items-center gap-1.5 bg-indigo-800 hover:bg-indigo-700 border border-indigo-600/50 text-white font-bold px-3 py-2 rounded-xl text-xs shadow transition">
+                    <button
+                        class="flex items-center gap-1.5 bg-indigo-800 hover:bg-indigo-700 border border-indigo-600/50 text-white font-bold px-3 py-2 rounded-xl text-xs shadow transition">
                         🇭🇰 中文（繁體） <span class="text-indigo-300">▾</span>
                     </button>
                     <div class="lang-menu">
@@ -130,7 +151,8 @@
 
     <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-violet-900 text-white py-12 px-4">
         <div class="max-w-4xl mx-auto text-center space-y-4">
-            <span class="bg-indigo-700/60 border border-indigo-500/40 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full">
+            <span
+                class="bg-indigo-700/60 border border-indigo-500/40 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full">
                 僅限週末 🌟 外籍人士眾多 · 初學者多
             </span>
             <h2 class="text-2xl sm:text-4xl font-extrabold">
@@ -209,7 +231,8 @@
         </section>
 
         <!-- 注意事項 -->
-        <section class="bg-amber-50/85 border-l-4 border-amber-500 p-5 rounded-r-2xl shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
+        <section
+            class="bg-amber-50/85 border-l-4 border-amber-500 p-5 rounded-r-2xl shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
             <div class="flex items-start gap-4">
                 <span class="text-2xl">⚠️</span>
                 <div class="space-y-2">
@@ -220,7 +243,8 @@
                     </p>
                     <div class="border-t border-amber-200/60 pt-2 mt-2 space-y-1 text-xs text-amber-700/90">
                         <p><strong>日本語:</strong> バドミントンおよび卓球に参加される方は、必ず室内用のきれいな運動靴をご持参ください。</p>
-                        <p><strong>English:</strong> Please bring clean indoor athletic shoes for badminton &amp; table tennis. Outside shoes are strictly prohibited.</p>
+                        <p><strong>English:</strong> Please bring clean indoor athletic shoes for badminton &amp; table
+                            tennis. Outside shoes are strictly prohibited.</p>
                     </div>
                 </div>
             </div>
@@ -233,7 +257,9 @@
                 <!-- Badminton -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
-                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸 羽毛球</span>
+                        <span
+                            class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸
+                            羽毛球</span>
                         <h4 class="font-bold text-slate-900 text-base mb-2">大井小學校 週六晚固定練習會</h4>
                         <div class="space-y-1 text-xs text-slate-600 mb-4">
                             <p>📍 <strong>地點:</strong> 富士見野市立大井小學校 體育館</p>
@@ -256,7 +282,9 @@
                 <!-- Tennis -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
-                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-100 inline-block mb-3">🎾 網球</span>
+                        <span
+                            class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-100 inline-block mb-3">🎾
+                            網球</span>
                         <h4 class="font-bold text-slate-900 text-base mb-2">初學者網球（隨時預約制）</h4>
                         <div class="space-y-1 text-xs text-slate-600 mb-4">
                             <p>📍 <strong>地點:</strong> 富士見野市立體育中心網球場 / 富士見野市運動公園</p>
@@ -278,7 +306,9 @@
                 <!-- Table Tennis -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
-                        <span class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-amber-100 inline-block mb-3">🏓 乒乓球</span>
+                        <span
+                            class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-amber-100 inline-block mb-3">🏓
+                            乒乓球</span>
                         <h4 class="font-bold text-slate-900 text-base mb-2">初學者乒乓球・休閒交流會</h4>
                         <div class="space-y-1 text-xs text-slate-600 mb-4">
                             <p>📍 <strong>地點:</strong> 富士見野市第2運動公園 / 駒林體育館 / 上野台體育館 / 富士見野市立綜合體育館</p>
@@ -303,16 +333,19 @@
 
     </main>
 
-    <div id="joinModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div id="joinModal"
+        class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-bold text-slate-900">✨ 新會員註冊</h3>
-                <button onclick="closeJoinModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                <button onclick="closeJoinModal()"
+                    class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
             </div>
             <form onsubmit="handleJoinSubmit(event)" class="space-y-3">
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">姓名</label>
-                    <input type="text" required placeholder="例：王 小明" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                    <input type="text" required placeholder="例：王 小明"
+                        class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">希望參加的運動</label>
@@ -324,31 +357,39 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">郵箱地址</label>
-                    <input type="email" required placeholder="example@email.com" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                    <input type="email" required placeholder="example@email.com"
+                        class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
                 </div>
                 <div class="flex justify-end gap-2 pt-2">
-                    <button type="button" onclick="closeJoinModal()" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold">取消</button>
-                    <button type="submit" class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-semibold">註冊</button>
+                    <button type="button" onclick="closeJoinModal()"
+                        class="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold">取消</button>
+                    <button type="submit"
+                        class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-semibold">註冊</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="contactModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div id="contactModal"
+        class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-bold text-slate-900">💬 聯繫方式說明</h3>
-                <button onclick="closeContactModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                <button onclick="closeContactModal()"
+                    class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
             </div>
             <div id="contactDetails" class="space-y-3 text-sm text-slate-700 mb-6"></div>
             <div class="flex justify-end">
-                <button onclick="closeContactModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-semibold">關閉</button>
+                <button onclick="closeContactModal()"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-semibold">關閉</button>
             </div>
         </div>
     </div>
 
     <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
         <p>&copy; 2026 富士見野初心會綜合體育俱樂部. All rights reserved.</p>
+        <p class="mb-2">📧 お問い合わせ: <a href="mailto:info@fujimino.space"
+                class="text-indigo-600 hover:underline font-semibold">info@fujimino.space</a></p>
     </footer>
 
     <script>
