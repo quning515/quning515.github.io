@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fujimino Shoshinkai Sports Club | Badminton, Tennis & Table Tennis in Fujimino, Saitama</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A beginner-friendly sports club in Fujimino City, Saitama, Japan. Weekend badminton (¥100), tennis (¥400), and table tennis (¥100) sessions. International members welcome! Fixed badminton every Saturday evening at Oi Elementary School.">
+    <meta name="keywords" content="Fujimino badminton, Fujimino tennis, Fujimino table tennis, sports club Saitama, beginner sports Japan, international sports club, weekend sports Fujimino, Shoshinkai">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Fujimino Shoshinkai All-Sports Club">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fujimirv.jptungri.shop/index_en.html">
+
+    <!-- hreflang Alternates -->
+    <link rel="alternate" hreflang="ja" href="https://fujimirv.jptungri.shop/index.html">
+    <link rel="alternate" hreflang="en" href="https://fujimirv.jptungri.shop/index_en.html">
+    <link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html">
+    <link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html">
+    <link rel="alternate" hreflang="vi" href="https://fujimirv.jptungri.shop/index_vi.html">
+    <link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://fujimirv.jptungri.shop/index_en.html">
+    <meta property="og:title" content="Fujimino Shoshinkai Sports Club | Badminton, Tennis & Table Tennis">
+    <meta property="og:description" content="Join us for weekend badminton, tennis, and table tennis in Fujimino City, Saitama! Beginner-friendly, international members welcome. Low entry fees from ¥100/session.">
+    <meta property="og:site_name" content="Fujimino Shoshinkai All-Sports Club">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Fujimino Shoshinkai Sports Club">
+    <meta name="twitter:description" content="Weekend badminton, tennis & table tennis in Fujimino City, Saitama. Beginners & international members welcome!">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsClub",
+      "name": "Fujimino Shoshinkai All-Sports Club",
+      "description": "A beginner-friendly sports club in Fujimino City, Saitama, offering weekend badminton, tennis, and table tennis. International members welcome.",
+      "url": "https://fujimirv.jptungri.shop/index_en.html",
+      "email": "tungri2024@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Fujimino",
+        "addressRegion": "Saitama",
+        "addressCountry": "JP"
+      },
+      "sport": ["Badminton", "Tennis", "Table Tennis"],
+      "openingHours": "Sa 18:00-20:00",
+      "priceRange": "¥100–¥400"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .lang-dropdown { position: relative; display: inline-block; }
+        .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #1e1b4b;
+            border: 1px solid rgba(99,102,241,0.3);
+            border-radius: 12px;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            z-index: 100;
+            overflow: hidden;
+        }
+        .lang-dropdown:hover .lang-menu,
+        .lang-dropdown:focus-within .lang-menu { display: block; }
+        .lang-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            font-size: 12px;
+            color: #c7d2fe;
+            text-decoration: none;
+            transition: background 0.15s;
+            font-weight: 500;
+        }
+        .lang-menu a:hover { background: rgba(99,102,241,0.2); color: #fff; }
+        .lang-menu a.active { background: rgba(99,102,241,0.3); color: #fff; font-weight: 700; }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl">🏅</span>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold">Fujimino Shoshinkai All-Sports Club</h1>
+                    <p class="text-xs text-indigo-200">Weekend Sports · Beginners Welcome · International Members</p>
+                </div>
+            </div>
+            <nav class="flex items-center gap-2 flex-wrap justify-center">
+                <a href="#about" class="text-xs sm:text-sm hover:text-indigo-200 font-medium">About</a>
+                <a href="#events" class="text-xs sm:text-sm hover:text-indigo-200 font-medium">Activities</a>
+                <a href="https://fujimirv.jptungri.shop/index_ja.html" target="_blank" rel="noopener noreferrer"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
+                    <span>📅</span> Booking
+                </a>
+                <button onclick="openJoinModal()"
+                    class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-3 py-2 rounded-xl text-xs shadow transition">
+                    Join Us
+                </button>
+                <!-- Language Switcher -->
+                <div class="lang-dropdown">
+                    <button class="flex items-center gap-1.5 bg-indigo-800 hover:bg-indigo-700 border border-indigo-600/50 text-white font-bold px-3 py-2 rounded-xl text-xs shadow transition">
+                        🇬🇧 English <span class="text-indigo-300">▾</span>
+                    </button>
+                    <div class="lang-menu">
+                        <a href="index.html">🇯🇵 日本語</a>
+                        <a href="index_en.html" class="active">🇬🇧 English</a>
+                        <a href="index_zh.html">🇨🇳 中文（简体）</a>
+                        <a href="index_zh-tw.html">🇹🇼 中文（繁體）</a>
+                        <a href="index_vi.html">🇻🇳 Tiếng Việt</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-violet-900 text-white py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-4">
+            <span class="bg-indigo-700/60 border border-indigo-500/40 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full">
+                Weekends Only 🌟 Many International Members · Beginners Welcome
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold">
+                Get Active on Weekends! Badminton · Tennis · Table Tennis Community
+            </h2>
+            <p class="text-indigo-100 text-sm sm:text-base max-w-2xl mx-auto">
+                Based in Fujimino City, Saitama! Badminton is held every Saturday evening at Oi Elementary School. Please contact us by email before joining.
+            </p>
+            <div class="pt-4 flex flex-wrap justify-center gap-3">
+                <a href="https://fujimirv.jptungri.shop/index_ja.html" target="_blank" rel="noopener noreferrer"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2">
+                    <span>📅</span> Go to Booking System
+                </a>
+                <button onclick="openJoinModal()"
+                    class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2">
+                    <span>✨</span> Apply for Membership
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 space-y-10">
+
+        <section id="about" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 md:col-span-2 space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span>🌟</span> Features of Our 3 Sports
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100">
+                        <div class="text-2xl mb-1">🏸</div>
+                        <h4 class="font-bold text-indigo-900 text-sm">Badminton</h4>
+                        <p class="text-xs text-slate-600 mt-1">Fixed every Saturday night at Oi Elementary! Beginners & international members, ¥100/session.</p>
+                    </div>
+                    <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100">
+                        <div class="text-2xl mb-1">🎾</div>
+                        <h4 class="font-bold text-emerald-900 text-sm">Tennis</h4>
+                        <p class="text-xs text-slate-600 mt-1">Evening sessions in summer · Beginners only · ¥400/session. Schedule by email anytime.</p>
+                    </div>
+                    <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-100">
+                        <div class="text-2xl mb-1">🏓</div>
+                        <h4 class="font-bold text-amber-900 text-sm">Table Tennis</h4>
+                        <p class="text-xs text-slate-600 mt-1">2nd Sports Park · Komagayashi Gym · Uenodai Gym · General Sports Center · ¥100/session.</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    All club activities are held on <strong>weekends</strong>. Tennis and table tennis are held irregularly — if you'd like to join, just email us in advance and we'll find a time that works!
+                </p>
+            </div>
+
+            <div class="bg-indigo-950 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold mb-3 flex items-center gap-2">
+                        <span>📊</span> Club Overview
+                    </h3>
+                    <ul class="space-y-2.5 text-xs text-indigo-200">
+                        <li class="flex justify-between items-center">
+                            <span>Active Days:</span>
+                            <span class="font-bold text-white">Weekends Only (Sat & Sun)</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>Location:</span>
+                            <span class="font-bold text-white">Fujimino City facilities</span>
+                        </li>
+                        <li class="flex justify-between items-center border-t border-indigo-900 pt-2">
+                            <span>🏸 Badminton Fee:</span>
+                            <span class="font-bold text-amber-300 text-sm">¥100 / session</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>🎾 Tennis Fee:</span>
+                            <span class="font-bold text-amber-300 text-sm">¥400 / session</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>🏓 Table Tennis Fee:</span>
+                            <span class="font-bold text-amber-300 text-sm">¥100 / session</span>
+                        </li>
+                    </ul>
+                </div>
+                <button onclick="openJoinModal()"
+                    class="mt-4 w-full bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold py-2 rounded-xl text-xs transition shadow">
+                    Apply for Membership
+                </button>
+            </div>
+        </section>
+
+        <!-- Important Notice -->
+        <section class="bg-amber-50/85 border-l-4 border-amber-500 p-5 rounded-r-2xl shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-start gap-4">
+                <span class="text-2xl">⚠️</span>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-amber-900 text-base">Important: Indoor Shoes Required (Badminton & Table Tennis)</h4>
+                    <p class="text-sm text-amber-800 leading-relaxed font-medium">
+                        Participants in badminton and table tennis must bring <strong>clean indoor athletic shoes</strong>.
+                        Outside shoes or dirty shoes are strictly prohibited inside the gymnasium — you will not be allowed to enter without indoor shoes.
+                    </p>
+                    <div class="border-t border-amber-200/60 pt-2 mt-2 space-y-1 text-xs text-amber-700/90">
+                        <p><strong>日本語:</strong> バドミントンおよび卓球に参加される方は、必ず室内用のきれいな運動靴をご持参ください。</p>
+                        <p><strong>中文:</strong> 参加羽毛球以及乒乓球活动的人员请务必携带一双干净的室内运动鞋，否则无法进入球馆。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">📅 Activity Details & How to Join</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Badminton -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸 Badminton</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">Oi Elementary School — Fixed Saturday Evening Session</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>Venue:</strong> Fujimino City Oi Elementary School Gymnasium</p>
+                            <p>📅 <strong>Time:</strong> Every Saturday 18:00–20:00</p>
+                            <p>💰 <strong>Fee:</strong> ¥100 per session</p>
+                            <p>👥 <strong>Features:</strong> Beginners welcome · Many international members</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            Fixed practice every Saturday night! We enjoy basics and casual games in a friendly atmosphere. Please email us before your first visit.<br>
+                            <span class="text-amber-600 font-bold block mt-1">⚠️ Please bring clean indoor athletic shoes.</span>
+                            <span class="text-rose-600 font-bold block mt-1.5">※ Sessions may be cancelled without notice. First-time visitors must contact us in advance to avoid a wasted trip.</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('Badminton', 'Oi Elementary School — Fixed Saturday Evening Session')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        Email Us to Inquire / Join
+                    </button>
+                </div>
+
+                <!-- Tennis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-100 inline-block mb-3">🎾 Tennis</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">Beginner Tennis (Flexible Booking)</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>Venue:</strong> Fujimino City Sports Center Tennis Courts / Fujimino City Sports Park</p>
+                            <p>📅 <strong>Time:</strong> Weekend evenings mainly (daytime possible when cooler)</p>
+                            <p>💰 <strong>Fee:</strong> ¥400 per session</p>
+                            <p>👥 <strong>Features:</strong> All beginners · Prior consultation required</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            In summer, we play on cool weekend evenings only. Tennis is held irregularly on weekends — email us to arrange a time and let's play together!<br>
+                            <span class="text-rose-600 font-bold block mt-1.5">※ Sessions may be cancelled without notice. First-time visitors must contact us in advance to avoid a wasted trip.</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('Tennis', 'Beginner Tennis (Flexible Booking)')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        Email Us to Schedule
+                    </button>
+                </div>
+
+                <!-- Table Tennis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-amber-100 inline-block mb-3">🏓 Table Tennis</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">Beginner Table Tennis · Casual Meetup</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>Venue:</strong> Fujimino 2nd Sports Park / Komagayashi Gym / Uenodai Gym / Fujimino General Sports Center</p>
+                            <p>📅 <strong>Time:</strong> Weekends only (schedule by email)</p>
+                            <p>💰 <strong>Fee:</strong> ¥100 per session</p>
+                            <p>👥 <strong>Features:</strong> Irregular · Beginner-friendly</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            Table tennis is also weekends only, held irregularly (schedule by email). We use city gymnasium facilities. Feel free to email and let's find a time!<br>
+                            <span class="text-amber-600 font-bold block mt-1">⚠️ Please bring clean indoor athletic shoes.</span>
+                            <span class="text-rose-600 font-bold block mt-1.5">※ Sessions may be cancelled without notice. First-time visitors must contact us in advance to avoid a wasted trip.</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('Table Tennis', 'Beginner Table Tennis · Casual Meetup')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        Email Us to Schedule
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="joinModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-900">✨ New Member Registration</h3>
+                <button onclick="closeJoinModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            </div>
+            <form onsubmit="handleJoinSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+                    <input type="text" required placeholder="e.g. John Smith" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Preferred Sport</label>
+                    <select class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                        <option>Badminton (¥100/session)</option>
+                        <option>Tennis (¥400/session · Prior consultation required)</option>
+                        <option>Table Tennis (¥100/session · Prior consultation required)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+                    <input type="email" required placeholder="example@email.com" class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeJoinModal()" class="bg-slate-100 text-slate-700 px-4 py-2 rounded-xl text-xs font-semibold">Cancel</button>
+                    <button type="submit" class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-semibold">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="contactModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-900">💬 How to Contact Us</h3>
+                <button onclick="closeContactModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            </div>
+            <div id="contactDetails" class="space-y-3 text-sm text-slate-700 mb-6"></div>
+            <div class="flex justify-end">
+                <button onclick="closeContactModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Fujimino Shoshinkai All-Sports Club. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openJoinModal() { document.getElementById('joinModal').classList.remove('hidden'); document.getElementById('joinModal').classList.add('flex'); }
+        function closeJoinModal() { document.getElementById('joinModal').classList.remove('flex'); document.getElementById('joinModal').classList.add('hidden'); }
+
+        function openContactModal(author, title) {
+            document.getElementById('contactDetails').innerHTML = `
+                <p class="font-semibold text-slate-900 mb-1">"${title}"</p>
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl space-y-2">
+                    <p class="text-xs text-indigo-700 font-semibold">Contact for participation & scheduling:</p>
+                    <p class="text-xs font-mono text-indigo-900 font-bold bg-white p-2 rounded border border-indigo-200">📧 tungri2024@gmail.com</p>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">※ Please email the above address with your Name, Preferred Sport, and Preferred Date/Time or any questions!</p>
+            `;
+            document.getElementById('contactModal').classList.remove('hidden');
+            document.getElementById('contactModal').classList.add('flex');
+        }
+        function closeContactModal() { document.getElementById('contactModal').classList.remove('flex'); document.getElementById('contactModal').classList.add('hidden'); }
+
+        function handleJoinSubmit(e) {
+            e.preventDefault();
+            closeJoinModal();
+            alert("Thank you for registering! We will contact you via our club email (tungri2024@gmail.com) once confirmed.");
+        }
+    </script>
+</body>
+
+</html>

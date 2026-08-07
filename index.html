@@ -1,396 +1,389 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人作品集 - 创新与设计</title>
-    <!-- 引入字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>ふじみ野初心会総合スポーツクラブ | バドミントン・テニス・卓球（埼玉県ふじみ野市）</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="埼玉県ふじみ野市で活動中の初心者向けスポーツクラブ。バドミントン（1回100円）・テニス（1回400円）・卓球（1回100円）を週末に開催。外国籍の方大歓迎！大井小学校体育館で毎週土曜年家獅荷。">
+    <meta name="keywords" content="ふじみ野市 バドミントン, ふじみ野市 テニス, ふじみ野市 卓球, 初心者 スポーツ, 埼玉県 バドミントン, 外国籍 スポーツクラブ, 週末 スポーツ, 初心会">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="ふじみ野初心会総合スポーツクラブ">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fujimirv.jptungri.shop/index.html">
+
+    <!-- hreflang Alternates -->
+    <link rel="alternate" hreflang="ja" href="https://fujimirv.jptungri.shop/index.html">
+    <link rel="alternate" hreflang="en" href="https://fujimirv.jptungri.shop/index_en.html">
+    <link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html">
+    <link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html">
+    <link rel="alternate" hreflang="vi" href="https://fujimirv.jptungri.shop/index_vi.html">
+    <link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:url" content="https://fujimirv.jptungri.shop/index.html">
+    <meta property="og:title" content="ふじみ野初心会総合スポーツクラブ | バドミントン・テニス・卓球">
+    <meta property="og:description" content="埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しもう！初心者・外国籍の方大歓迎。少额参加費で気軽にスポーツを楽しむコミュニティ。">
+    <meta property="og:site_name" content="ふじみ野初心会総合スポーツクラブ">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ふじみ野初心会総合スポーツクラブ">
+    <meta name="twitter:description" content="埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しもう！初心者・外国籍の方大歓迎。">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsClub",
+      "name": "ふじみ野初心会総合スポーツクラブ",
+      "description": "埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しむ初心者向けスポーツクラブ。外国籍の方大歓迎。",
+      "url": "https://fujimirv.jptungri.shop/index.html",
+      "email": "tungri2024@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "ふじみ野市",
+        "addressRegion": "埼玉県",
+        "addressCountry": "JP"
+      },
+      "sport": ["バドミントン", "テニス", "卓球"],
+      "openingHours": "Sa 18:00-20:00",
+      "priceRange": "100円～400円"
+    }
+    </script>
+
+    <!-- STREAMING_CHUNK:Loading Tailwind and Fonts... -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #f43f5e;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
         }
 
-        /* 自定义滚动条 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-        }
-
-        /* 导航栏 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
+        .lang-dropdown {
             position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* 英雄版块 (Hero Section) */
-        section {
-            min-height: 100vh;
-            padding: 100px 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero {
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            animation: fadeInUp 1.4s ease;
-        }
-
-        .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
             display: inline-block;
-            text-align: center;
         }
 
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--text-dim);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        /* 作品筛选区 */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: var(--card-bg);
-            color: var(--text-dim);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        /* 作品网格 */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            background: var(--card-bg);
-            border-radius: 20px;
+        .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            background: #1e1b4b;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            z-index: 100;
             overflow: hidden;
-            transition: var(--transition);
-            position: relative;
-            opacity: 1;
-            transform: scale(1);
-            text-decoration: none;
-            color: inherit;
+        }
+
+        .lang-dropdown:hover .lang-menu,
+        .lang-dropdown:focus-within .lang-menu {
             display: block;
         }
 
-        .portfolio-item.hidden {
-            display: none;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 200px;
-            background: #2d3748;
+        .lang-menu a {
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
+            gap: 8px;
+            padding: 9px 14px;
+            font-size: 12px;
+            color: #c7d2fe;
+            text-decoration: none;
+            transition: background 0.15s;
+            font-weight: 500;
         }
 
-        .portfolio-info {
-            padding: 1.5rem;
+        .lang-menu a:hover {
+            background: rgba(99, 102, 241, 0.2);
+            color: #fff;
         }
 
-        .portfolio-info h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-info p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        .tag {
-            font-size: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-right: 5px;
-        }
-
-        /* 侧边迁移按钮/悬浮窗 - 在多页面模式下通常移除，此处保留并修改为跳转 */
-        .side-nav {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 1000;
-        }
-
-        .dot-link {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--text-dim);
-            cursor: pointer;
-            transition: var(--transition);
-            display: block;
-        }
-
-        .dot-link:hover, .dot-link.active {
-            background: var(--secondary-color);
-            transform: scale(1.5);
-        }
-
-        /* 动画 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .side-nav { display: none; }
+        .lang-menu a.active {
+            background: rgba(99, 102, 241, 0.3);
+            color: #fff;
+            font-weight: 700;
         }
     </style>
 </head>
-<body>
 
-    <!-- 导航栏 -->
-    <nav>
-        <a href="index.html" class="logo">DESIGNER.IO</a>
-        <div class="nav-links">
-            <a href="index.html">首页</a>
-            <a href="projects.html">所有作品集</a>
-            <a href="about.html">关于我</a>
-            <a href="contact.html">联系合作</a>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- STREAMING_CHUNK:Rendering Header Navigation... -->
+    <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl">🏅</span>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold">ふじみ野初心会総合スポーツクラブ</h1>
+                    <p class="text-xs text-indigo-200">週末スポーツ・初心者大歓迎・外国籍多数</p>
+                </div>
+            </div>
+            <nav class="flex items-center gap-2 flex-wrap justify-center">
+                <a href="#about" class="text-xs sm:text-sm hover:text-indigo-200 font-medium">クラブ紹介</a>
+                <a href="#events" class="text-xs sm:text-sm hover:text-indigo-200 font-medium">活動日程・詳細</a>
+                <a href="https://fujimirv.jptungri.shop/index_ja.html" target="_blank" rel="noopener noreferrer"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
+                    <span>📅</span> 予約システム
+                </a>
+
+                <!-- Language Switcher -->
+                <div class="lang-dropdown">
+                    <button
+                        class="flex items-center gap-1.5 bg-indigo-800 hover:bg-indigo-700 border border-indigo-600/50 text-white font-bold px-3 py-2 rounded-xl text-xs shadow transition">
+                        🇯🇵 日本語 <span class="text-indigo-300">▾</span>
+                    </button>
+                    <div class="lang-menu">
+                        <a href="index.html" class="active">🇯🇵 日本語</a>
+                        <a href="index_en.html">🇬🇧 English</a>
+                        <a href="index_zh.html">🇨🇳 中文（简体）</a>
+                        <a href="index_zh-tw.html">🇹🇼 中文（繁體）</a>
+                        <a href="index_vi.html">🇻🇳 Tiếng Việt</a>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- 侧边迁移球 (改为链接形式跳转到不同页面) -->
-    <div class="side-nav">
-        <a href="index.html" class="dot-link active" title="首页"></a>
-        <a href="projects.html" class="dot-link" title="作品列表"></a>
-        <a href="about.html" class="dot-link" title="个人简历"></a>
-        <a href="contact.html" class="dot-link" title="即刻联系"></a>
+    <!-- STREAMING_CHUNK:Rendering Hero Section... -->
+    <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-violet-900 text-white py-12 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-4">
+            <span
+                class="bg-indigo-700/60 border border-indigo-500/40 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full">
+                週末限定 🌟 外国籍の方・初心者多数参加
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold">
+                週末に楽しく汗を流そう！バドミントン・テニス・卓球コミュニティ
+            </h2>
+            <p class="text-indigo-100 text-sm sm:text-base max-w-2xl mx-auto">
+                埼玉県ふじみ野市を中心に活動中！バドミントンは毎週土曜夜に大井小学校で固定開催。ご参加は事前にメールでご連絡ください。
+            </p>
+            <div class="pt-4 flex flex-wrap justify-center gap-3">
+                <a href="https://fujimirv.jptungri.shop/index_ja.html" target="_blank" rel="noopener noreferrer"
+                    class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2">
+                    <span>📅</span> 予約システムはこちら
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Rendering Main Content... -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 space-y-10">
+
+        <!-- About & Overview Grid -->
+        <section id="about" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 md:col-span-2 space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <span>🌟</span> 3大競技の特徴と活動方針
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100">
+                        <div class="text-2xl mb-1">🏸</div>
+                        <h4 class="font-bold text-indigo-900 text-sm">バドミントン</h4>
+                        <p class="text-xs text-slate-600 mt-1">毎週土曜夜大井小固定！初心者・外国籍多数、1回100円。</p>
+                    </div>
+                    <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100">
+                        <div class="text-2xl mb-1">🎾</div>
+                        <h4 class="font-bold text-emerald-900 text-sm">テニス</h4>
+                        <p class="text-xs text-slate-600 mt-1">夏期は夜間・初心者のみ・1回400円。随時連絡で日時調整。</p>
+                    </div>
+                    <div class="bg-amber-50/70 p-3.5 rounded-xl border border-amber-100">
+                        <div class="text-2xl mb-1">🏓</div>
+                        <h4 class="font-bold text-amber-900 text-sm">卓球</h4>
+                        <p class="text-xs text-slate-600 mt-1">第2運動公園・駒林体育館・上野台体育館・総合体育館等・1回100円。</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    当クラブはすべて<strong>週末</strong>に活動しています。テニスや卓球は不定期で行っており、ご希望の方は事前にメールでご連絡いただければ、一緒に都合の良い時間を合わせて遊べます！
+                </p>
+            </div>
+
+            <!-- STREAMING_CHUNK:Rendering Club Overview Summary Card... -->
+            <div class="bg-indigo-950 text-white rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="text-base font-bold mb-3 flex items-center gap-2">
+                        <span>📊</span> クラブ概要
+                    </h3>
+                    <ul class="space-y-2.5 text-xs text-indigo-200">
+
+                        <li class="flex justify-between items-center">
+                            <span>活動日時:</span>
+                            <span class="font-bold text-white">週末限定（土日）</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>主な活動拠点:</span>
+                            <span class="font-bold text-white">ふじみ野市内施設</span>
+                        </li>
+                        <li class="flex justify-between items-center border-t border-indigo-900 pt-2">
+                            <span>🏸 バドミントン参加費:</span>
+                            <span class="font-bold text-amber-300 text-sm">1回 100円</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>🎾 テニス参加費:</span>
+                            <span class="font-bold text-amber-300 text-sm">1回 400円</span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <span>🏓 卓球参加費:</span>
+                            <span class="font-bold text-amber-300 text-sm">1回 100円</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 注意事項 / Important Notice -->
+        <section
+            class="bg-amber-50/85 border-l-4 border-amber-500 p-5 rounded-r-2xl shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
+            <div class="flex items-start gap-4">
+                <span class="text-2xl">⚠️</span>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-amber-900 text-base">持ち物に関する重要なお願い（バドミントン・卓球）</h4>
+                    <p class="text-sm text-amber-800 leading-relaxed font-medium">
+                        バドミントンおよび卓球に参加される方は、必ず<strong>室内用のきれいな運動靴（上履き・シューズ）</strong>をご持参ください。
+                        体育館の規定により、外履きや汚れた靴での入場・プレイは固くお断りしております（お持ちでない場合は入館できません）。
+                    </p>
+                    <div class="border-t border-amber-200/60 pt-2 mt-2 space-y-1 text-xs text-amber-700/90">
+                        <p><strong>English:</strong> Please bring clean indoor athletic shoes for badminton & table
+                            tennis. Outside shoes are strictly prohibited inside the gymnasium (you cannot enter without
+                            indoor shoes).</p>
+                        <p><strong>中文:</strong> 参加羽毛球以及乒乓球活动的人员请务必携带一双干净的室内运动鞋，否则无法进入球馆。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STREAMING_CHUNK:Rendering Event Cards Grid... -->
+        <section id="events" class="space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">📅 各スポーツの詳細と参加方法</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Badminton -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span
+                            class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸
+                            バドミントン</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">大井小学校 土曜夜固定練習会</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>場所:</strong> ふじみ野市立大井小学校 体育館</p>
+                            <p>📅 <strong>日時:</strong> 毎週土曜日 18:00～20:00</p>
+                            <p>💰 <strong>費用:</strong> 1回 100円</p>
+                            <p>👥 <strong>特徴:</strong> 初級者・外国籍多数</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            毎週土曜夜の固定練習！基礎打ちやゲームをアットホームに楽しんでいます。要事前メール連絡。<br>
+                            <span class="text-amber-600 font-bold block mt-1">⚠️ 室内用シューズ（上履き）を必ず持参してください。</span>
+                            <span
+                                class="text-rose-600 font-bold block mt-1.5">※活動は臨時中止の可能性があります。初めて参加される方は、無駄足にならないよう必ず事前にご連絡ください。</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('バドミントン窓口', '大井小学校 土曜夜固定練習会')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        メールで問い合わせ・参加申込
+                    </button>
+                </div>
+
+                <!-- Tennis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span
+                            class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-100 inline-block mb-3">🎾
+                            テニス</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">初心者テニス（随時予約制）</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>場所:</strong> ふじみ野市立スポーツセンターテニスコート / ふじみ野市運動公園</p>
+                            <p>📅 <strong>日時:</strong> 週末（土日）の夜間中心（涼しくなれば昼も検討）</p>
+                            <p>💰 <strong>費用:</strong> 1回 400円</p>
+                            <p>👥 <strong>特徴:</strong> 全員初心者・要事前相談</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            夏は涼しい週末（土日）の夜間のみ。テニスは週末の不定期（随時日程調整）で行うため、やりたい方は事前にメールで日時を相談して一緒に打ちましょう！<br>
+                            <span
+                                class="text-rose-600 font-bold block mt-1.5">※活動は臨時中止の可能性があります。初めて参加される方は、無駄足にならないよう必ず事前にご連絡ください。</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('テニス窓口', '初心者テニス（随時予約制）')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        メールで日時を相談する
+                    </button>
+                </div>
+
+                <!-- Table Tennis -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div>
+                        <span
+                            class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-amber-100 inline-block mb-3">🏓
+                            卓球</span>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">初心者卓球・カジュアル交流会</h4>
+                        <div class="space-y-1 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>場所:</strong> ふじみ野市第2運動公園 / 駒林体育館 / 上野台体育館 / ふじみ野市立総合体育館</p>
+                            <p>📅 <strong>日時:</strong> 週末限定（メールで日程調整）</p>
+                            <p>💰 <strong>費用:</strong> 1回 100円</p>
+                            <p>👥 <strong>特徴:</strong> 不定期・初心者向け</p>
+                        </div>
+                        <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
+                            卓球も週末のみ、不定期（随時日程調整）で活動しています。市内の体育館施設を利用可能。気軽にメールで連絡して一緒に時間を合わせましょう！<br>
+                            <span class="text-amber-600 font-bold block mt-1">⚠️ 室内用シューズ（上履き）を必ず持参してください。</span>
+                            <span
+                                class="text-rose-600 font-bold block mt-1.5">※活動は臨時中止の可能性があります。初めて参加される方は、無駄足にならないよう必ず事前にご連絡ください。</span>
+                        </p>
+                    </div>
+                    <button onclick="openContactModal('卓球窓口', '初心者卓球・カジュアル交流会')"
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
+                        メールで日時を相談する
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- STREAMING_CHUNK:Setting up Modals and Scripts... -->
+
+    <div id="contactModal"
+        class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-900">💬 事前メール連絡のご案内</h3>
+                <button onclick="closeContactModal()"
+                    class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            </div>
+            <div id="contactDetails" class="space-y-3 text-sm text-slate-700 mb-6"></div>
+            <div class="flex justify-end">
+                <button onclick="closeContactModal()"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-semibold">閉じる</button>
+            </div>
+        </div>
     </div>
 
-    <!-- 首页主视口 -->
-    <section id="home" class="hero">
-        <h1>创造超越想象的数字体验集</h1>
-        <p>探索我的多维度设计作品，从网页开发到移动端交互。点击下方按钮迁移至作品详情页面。</p>
-
-    </section>
-
-    <!-- 作品展示预览 -->
-    <section id="portfolio" style="background: rgba(255,255,255,0.01)">
-        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">近期项目案例</h2>
-        
-        <div class="portfolio-grid" id="portfolioGrid">
-            <!-- 作品卡片 1 - 迁移到具体的项目详情页 -->
-            <a href="/cvFliter.html" class="portfolio-item">
-                <div class="portfolio-img">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                </div>
-                <div class="portfolio-info">
-                    <span class="tag">查看详情</span>
-                    <h3>AI简历筛选</h3>
-                    <p>点击进入完整项目介绍页面，了解交互逻辑与技术栈。</p>
-                </div>
-            </a>
-
-            <!-- 作品卡片 2 -->
-            <a href="/wangyibo.html" class="portfolio-item">
-                <div class="portfolio-img">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-                </div>
-                <div class="portfolio-info">
-                    <span class="tag">交互原型</span>
-                    <h3>冥想引导应用</h3>
-                    <p>探索如何通过动效迁移提升用户的心理舒适度。</p>
-                </div>
-            </a>
-
-            <!-- 作品卡片 3 -->
-            <a href="project-branding.html" class="portfolio-item">
-                <div class="portfolio-img">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.3"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                </div>
-                <div class="portfolio-info">
-                    <span class="tag">视觉识别</span>
-                    <h3>Neo-Future 品牌</h3>
-                    <p>跳转至品牌案例库，查看完整的视觉规范手册。</p>
-                </div>
-            </a>
-        </div>
-
-        <div style="text-align: center; margin-top: 4rem;">
-            <a href="projects.html" class="btn btn-outline">点击查看更多作品 (More)</a>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 4rem 2rem; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05)">
-        <p>&copy; 2024 DESIGNER.IO - 跨页面交互示例</p>
-        <p style="font-size: 0.8rem; margin-top: 1rem;">当前页面：Home (index.html)</p>
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 ふじみ野初心会総合スポーツクラブ. All rights reserved.</p>
     </footer>
 
     <script>
-        // 在多页面环境下，此处的逻辑主要处理页面加载动效
-        window.addEventListener('load', () => {
-            console.log('页面迁移完成，资源已加载。');
-        });
-
-        // 模拟页面预加载效果（可选）
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href && href.endsWith('.html')) {
-                    console.log('正在迁移至新页面: ' + href);
-                    // 这里可以添加全局淡出动画
-                }
-            });
-        });
+        function openContactModal(author, title) {
+            document.getElementById('contactDetails').innerHTML = `
+                <p class="font-semibold text-slate-900 mb-1">「${title}」</p>
+                <div class="bg-indigo-50 border border-indigo-100 p-3 rounded-xl space-y-2">
+                    <p class="text-xs text-indigo-700 font-semibold">ご参加・日時調整の連絡先:</p>
+                    <p class="text-xs font-mono text-indigo-900 font-bold bg-white p-2 rounded border border-indigo-200">📧 tungri2024@gmail.com</p>
+                </div>
+                <p class="text-xs text-slate-500 mt-3">※ 上記アドレス宛に「お名前」「希望スポーツ」「ご希望の日時やご質問」をお気軽にお送りください！</p>
+            `;
+            document.getElementById('contactModal').classList.remove('hidden');
+            document.getElementById('contactModal').classList.add('flex');
+        }
+        function closeContactModal() { document.getElementById('contactModal').classList.remove('flex'); document.getElementById('contactModal').classList.add('hidden'); }
     </script>
 </body>
+
 </html>
+```eof
