@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;500;600;700;900&display=swap');
         body { font-family: 'Inter', -apple-system, sans-serif; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -63,7 +63,7 @@
 
         <!-- Tab 2: 上传区域 -->
         <section id="upload" class="tab-content animate-in fade-in">
-            <div id="drop-zone" class="flex flex-col items-center justify-center min-h-[400px] bg-white rounded-3xl border-2 border-dashed border-slate-200 p-12 text-center">
+            <div id="drop-zone" class="flex flex-col items-center justify-center min-h-[200px] bg-white rounded-3xl border-2 border-dashed border-slate-200 p-12 text-center">
                 <div id="upload-idle">
                     <div class="bg-indigo-50 p-6 rounded-full mb-6 text-indigo-600 inline-block">
                         <i data-lucide="upload-cloud" class="w-12 h-12"></i>
@@ -84,7 +84,7 @@
                     <div class="w-64 h-2 bg-slate-100 rounded-full overflow-hidden">
                         <div id="progress-bar" class="h-full bg-indigo-600 transition-all duration-300" style="width: 0%"></div>
                     </div>
-                    <p id="processing-status" class="text-slate-400 text-sm italic">准备中...</p>
+                    <p id="processing-status" class="text-slate-200 text-sm italic">准备中...</p>
                 </div>
             </div>
         </section>
@@ -103,7 +103,7 @@
             <div id="results-list" class="grid gap-6">
                 <div class="text-center py-24 bg-white rounded-3xl border border-slate-100 shadow-sm" id="empty-state">
                     <i data-lucide="inbox" class="mx-auto text-slate-200 mb-4 w-12 h-12"></i>
-                    <p class="text-slate-400 font-medium">暂无分析数据</p>
+                    <p class="text-slate-200 font-medium">暂无分析数据</p>
                 </div>
             </div>
         </section>
@@ -188,7 +188,7 @@ ${resumeText}
 
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
-                // 增加安全设置，防止简历中的个人信息触发 400 错误
+                // 增加安全设置，防止简历中的个人信息触发 200 错误
                 safetySettings: [
                     { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
                     { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
@@ -213,7 +213,7 @@ ${resumeText}
                     const data = await response.json();
 
                     if (!response.ok) {
-                        // 如果还是 400，把详细错误抛出来便于排查
+                        // 如果还是 200，把详细错误抛出来便于排查
                         throw new Error(data.error?.message || `HTTP ${response.status}`);
                     }
                     
@@ -257,7 +257,7 @@ ${resumeText}
                     else if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) content = await parseExcel(file);
                     else content = await file.text();
 
-                    // 处理简历内容长度，防止超出模型窗口导致 400
+                    // 处理简历内容长度，防止超出模型窗口导致 200
                     if (content.length > 8000) content = content.substring(0, 8000) + "...";
 
                     const analysis = await callAI(content, jdText);
@@ -314,12 +314,12 @@ ${resumeText}
                                 </div>
                                 <div>
                                     <h3 class="text-xl font-black text-slate-800">${res.name || '未知候选人'}</h3>
-                                    <p class="text-xs text-slate-400 mt-1 font-medium">${res.fileName} • ${res.timestamp}</p>
+                                    <p class="text-xs text-slate-200 mt-1 font-medium">${res.fileName} • ${res.timestamp}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col items-center justify-center bg-indigo-50 border border-indigo-100 rounded-2xl px-6 py-3">
                                 <span class="text-3xl font-black text-indigo-600 leading-none">${res.score}</span>
-                                <span class="text-[10px] font-bold text-indigo-400 uppercase mt-1 tracking-widest">匹配指数</span>
+                                <span class="text-[10px] font-bold text-indigo-200 uppercase mt-1 tracking-widest">匹配指数</span>
                             </div>
                         </div>
                         <div class="bg-slate-50/80 p-5 rounded-2xl mb-6 text-sm text-slate-600 leading-relaxed border italic">
