@@ -8,8 +8,8 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="埼玉県ふじみ野市で活動中の初心者向けスポーツクラブ。バドミントン（1回100円）・テニス（1回200円）・卓球（1回100円）を週末に開催。外国籍の方大歓迎！大井小学校体育館で毎週土曜年家獅荷。">
-    <meta name="keywords" content="ふじみ野市 バドミントン, ふじみ野市 テニス, ふじみ野市 卓球, 初心者 スポーツ, 埼玉県 バドミントン, 外国籍 スポーツクラブ, 週末 スポーツ, 初心会">
+        content="埼玉県ふじみ野市で活動中の初心者向けスポーツクラブ。バドミントン（1回100円）・テニス（1回200円）・卓球（1回100円）を週末に開催。外国籍の方大歓迎！大井小学校体育館で毎週土曜日18:00〜20:00固定開催。参加ご希望の方はメールでお気軽にお問い合わせください。">
+    <meta name="keywords" content="ふじみ野市 バドミントン, ふじみ野市 テニス, ふじみ野市 卓球, 初心者 スポーツ, 埼玉県 バドミントン, 外国籍 スポーツクラブ, 週末 スポーツ, 初心会, ふじみ野 バドミントンサークル, 大井小学校 バドミントン, ふじみ野 テニスサークル, ふじみ野 卓球サークル, 初心者 バドミントン 埼玉, 格安 スポーツ ふじみ野">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ふじみ野初心会総合スポーツクラブ">
 
@@ -37,24 +37,182 @@
     <meta name="twitter:title" content="ふじみ野初心会総合スポーツクラブ">
     <meta name="twitter:description" content="埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しもう！初心者・外国籍の方大歓迎。">
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data: SportsClub -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SportsClub",
       "name": "ふじみ野初心会総合スポーツクラブ",
-      "description": "埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しむ初心者向けスポーツクラブ。外国籍の方大歓迎。",
+      "alternateName": "初心会スポーツクラブ",
+      "description": "埼玉県ふじみ野市で週末にバドミントン・テニス・卓球を楽しむ初心者向けスポーツクラブ。外国籍の方大歓迎。毎週土曜日18:00〜20:00に大井小学校体育館でバドミントン固定開催。",
       "url": "https://fujimirv.jptungri.shop/index.html",
       "email": "info@fujimino.space",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "ふじみ野市",
         "addressRegion": "埼玉県",
+        "postalCode": "356-0011",
         "addressCountry": "JP"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "ふじみ野市立大井小学校 体育館",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "ふじみ野市",
+          "addressRegion": "埼玉県",
+          "addressCountry": "JP"
+        }
       },
       "sport": ["バドミントン", "テニス", "卓球"],
       "openingHours": "Sa 18:00-20:00",
-      "priceRange": "100円～200円"
+      "priceRange": "100円～200円",
+      "isAccessibleForFree": false,
+      "membershipNumber": "制限なし",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: Recurring Badminton Event -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "バドミントン土曜夜固定練習会（ふじみ野初心会）",
+      "description": "毎週土曜日18:00〜20:00、大井小学校体育館で開催。初心者・外国籍の方大歓迎。参加費1回100円。室内用シューズ持参必須。事前にinfo@fujimino.spaceへメールでご連絡ください。",
+      "startDate": "2025-01-04T18:00:00+09:00",
+      "endDate": "2025-01-04T20:00:00+09:00",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byDay": "https://schema.org/Saturday",
+        "startTime": "18:00",
+        "endTime": "20:00",
+        "repeatFrequency": "P1W"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "ふじみ野市立大井小学校 体育館",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "ふじみ野市",
+          "addressRegion": "埼玉県",
+          "addressCountry": "JP"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "ふじみ野初心会総合スポーツクラブ",
+        "url": "https://fujimirv.jptungri.shop/index.html",
+        "email": "info@fujimino.space"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "100",
+        "priceCurrency": "JPY",
+        "availability": "https://schema.org/InStock",
+        "url": "https://fujimirv.jptungri.shop/index.html"
+      },
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "isAccessibleForFree": false,
+      "typicalAgeRange": "10-",
+      "image": "https://fujimirv.jptungri.shop/pics/badminton.jpg"
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "参加費はいくらですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "バドミントンと卓球は1回100円、テニスは1回200円です。月会費などはなく、参加した日だけの費用です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "初心者でも参加できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、大歓迎です！当クラブはすべてのスポーツで初心者を歓迎しています。特にバドミントンと卓球は初心者・外国籍の方が多数参加されており、和やかな雰囲気で楽しめます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "バドミントンはいつ開催していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "バドミントンは毎週土曜日18:00〜20:00に、ふじみ野市立大井小学校体育館で固定開催しています。初めて参加される方は、必ず事前にinfo@fujimino.spaceまでメールでご連絡ください。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "会場はどこですか？どうやって行けますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "バドミントンのメイン会場はふじみ野市立大井小学校体育館（埼玉県ふじみ野市）です。卓球はふじみ野市第2運動公園・駒林体育館・上野台体育館・総合体育館など複数施設を使用します。テニスはふじみ野市立スポーツセンターのテニスコートや運動公園を使用します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "外国籍の方でも参加できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、外国籍の方を積極的に歓迎しています。現在もたくさんの外国籍メンバーが参加されています。英語・中国語でも対応可能です。メールはinfo@fujimino.spaceまで。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "道具や用具は持参が必要ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "バドミントンと卓球については、ラケット等の用具はクラブで用意しています。ただし、体育館規定により室内用の清潔な運動靴（上履き）は必ず持参してください。外履きのまま入館することはできません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "テニスや卓球はいつ開催していますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "テニスと卓球は週末（土日）の不定期開催です。参加希望の方はinfo@fujimino.spaceまでメールで希望日時をお知らせいただければ、一緒に日程を調整します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "事前予約は必要ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい、初めて参加される方は必ず事前にメール（info@fujimino.space）でご連絡ください。臨時中止の場合もありますので、事前確認をお願いしています。バドミントンは毎週土曜固定ですが、念のため前日までにご連絡いただくと安心です。"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "ホーム",
+          "item": "https://fujimirv.jptungri.shop/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "バドミントン・テニス・卓球",
+          "item": "https://fujimirv.jptungri.shop/index.html#events"
+        }
+      ]
     }
     </script>
 
@@ -366,6 +524,164 @@
                 </div>
 
             </div>
+        </section>
+
+        <!-- =================== WHY JOIN SECTION =================== -->
+        <section id="why-join" class="space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">🌟 なぜ初心会スポーツクラブを選ぶのか</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow duration-300">
+                    <div class="text-3xl mb-2">💴</div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">超低コスト</h4>
+                    <p class="text-xs text-slate-500">バドミントン・卓球は<strong class="text-indigo-700">1回わずか100円</strong>。月会費・年会費・入会金一切なし。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow duration-300">
+                    <div class="text-3xl mb-2">🌍</div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">多国籍コミュニティ</h4>
+                    <p class="text-xs text-slate-500">中国・ベトナム・英語圏など<strong class="text-indigo-700">多数の外国籍メンバー</strong>が活躍中。日本語が苦手でも大丈夫！</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow duration-300">
+                    <div class="text-3xl mb-2">🔰</div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">初心者歓迎</h4>
+                    <p class="text-xs text-slate-500">スポーツ未経験でもOK！<strong class="text-indigo-700">初心者だらけ</strong>のアットホームな環境で一から楽しめます。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 text-center hover:shadow-md transition-shadow duration-300">
+                    <div class="text-3xl mb-2">📅</div>
+                    <h4 class="font-bold text-slate-800 text-sm mb-1">週末固定開催</h4>
+                    <p class="text-xs text-slate-500">バドミントンは<strong class="text-indigo-700">毎週土曜18:00〜20:00</strong>に固定開催。仕事帰りに参加しやすい時間帯。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================== FAQ SECTION =================== -->
+        <section id="faq" class="space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">❓ よくある質問（FAQ）</h3>
+            <div class="space-y-3" itemscope itemtype="https://schema.org/FAQPage">
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">💴 参加費はいくらですか？月会費はありますか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3 space-y-1">
+                            <p>参加費はスポーツごとに異なります：</p>
+                            <ul class="list-disc list-inside space-y-0.5 text-slate-500">
+                                <li>🏸 バドミントン：<strong class="text-indigo-700">1回100円</strong></li>
+                                <li>🎾 テニス：<strong class="text-indigo-700">1回200円</strong></li>
+                                <li>🏓 卓球：<strong class="text-indigo-700">1回100円</strong></li>
+                            </ul>
+                            <p class="mt-2">月会費・年会費・入会金はすべて<strong>無料</strong>です。参加した日だけ払うシンプルな方式です。</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">🔰 スポーツが初めてでも参加できますか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3">
+                            <p>はい、ぜひいらしてください！当クラブ名の「初心会」には<em>「初心者でも気軽に楽しめる」</em>という意味が込められています。実際に参加者の多くが運動が久しぶりの方や、そのスポーツを初めてやる方々です。上手い・下手関係なく、みんなで楽しく汗を流すことを大切にしています。</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">📅 バドミントンはいつ・どこで開催していますか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3">
+                            <p>バドミントンは<strong>毎週土曜日・18:00〜20:00</strong>に<strong>ふじみ野市立大井小学校体育館</strong>で固定開催しています。年間を通じてほぼ毎週行っています（臨時中止の場合あり）。</p>
+                            <p class="mt-2 text-rose-600 font-semibold">※ 初めての方は必ず事前にメールでご連絡ください（info@fujimino.space）。</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">🌍 外国籍の方でも参加できますか？日本語が苦手でも大丈夫ですか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3">
+                            <p>もちろんです！外国籍の方を<strong>積極的に歓迎</strong>しています。現在のメンバーには中国・ベトナム・英語圏など多国籍の方が多数います。英語・中国語でのコミュニケーションも可能です。メールでのお問い合わせもこれらの言語で構いません（📧 info@fujimino.space）。</p>
+                            <p class="mt-1 text-xs text-slate-400">Also welcome in English and Chinese. Email us at info@fujimino.space / 欢迎发邮件至 info@fujimino.space</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">👟 持ち物・道具は何が必要ですか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3 space-y-2">
+                            <p><strong>必須持参物：</strong></p>
+                            <ul class="list-disc list-inside space-y-0.5 text-slate-500">
+                                <li>🔴 <strong class="text-red-600">室内用の清潔な運動靴（上履き）</strong>— 体育館規定により必須。外履きでの入館・プレイは絶対不可。</li>
+                                <li>飲み物・タオル（任意）</li>
+                            </ul>
+                            <p><strong>不要なもの：</strong> ラケット・シャトル・ピンポン球などはクラブで用意しています。手ぶら（上履き以外）で参加OK！</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-white rounded-2xl border border-slate-100 shadow-sm group open:shadow-md transition-shadow duration-300" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="flex justify-between items-center cursor-pointer px-5 py-4 font-semibold text-slate-800 text-sm select-none list-none">
+                        <span itemprop="name">📧 どうやって参加・申し込みすればいいですか？</span>
+                        <span class="text-indigo-400 group-open:rotate-180 transition-transform duration-200 text-lg">▾</span>
+                    </summary>
+                    <div class="px-5 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-50" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" class="pt-3">
+                            <p>参加方法はとても簡単です：</p>
+                            <ol class="list-decimal list-inside space-y-0.5 text-slate-500 mt-1">
+                                <li><strong class="text-indigo-700">info@fujimino.space</strong> にメールを送る</li>
+                                <li>参加したいスポーツ・希望日時・お名前を書いて送るだけ</li>
+                                <li>確認後、担当者からご連絡します</li>
+                            </ol>
+                            <p class="mt-2">バドミントンは毎週土曜ですが、テニス・卓球は事前に日程調整が必要です。気軽にメールしてください！</p>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- =================== ACCESS SECTION =================== -->
+        <section id="access" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 space-y-4">
+            <h3 class="text-xl font-bold text-slate-900">📍 アクセス・会場情報</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-700">
+                <div class="bg-indigo-50/70 p-4 rounded-xl border border-indigo-100">
+                    <div class="text-xl mb-1">🏸</div>
+                    <h4 class="font-bold text-indigo-900 text-sm mb-1">バドミントン（固定）</h4>
+                    <p><strong>会場:</strong> ふじみ野市立大井小学校 体育館</p>
+                    <p><strong>住所:</strong> 埼玉県ふじみ野市</p>
+                    <p><strong>開催:</strong> 毎週土曜日 18:00〜20:00</p>
+                    <p class="text-indigo-600 font-semibold mt-1">最寄駅：東武東上線 ふじみ野駅・鶴瀬駅</p>
+                </div>
+                <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100">
+                    <div class="text-xl mb-1">🎾</div>
+                    <h4 class="font-bold text-emerald-900 text-sm mb-1">テニス（随時）</h4>
+                    <p><strong>会場:</strong> ふじみ野市立スポーツセンター テニスコート / ふじみ野市運動公園</p>
+                    <p><strong>開催:</strong> 週末（土日）夜間中心・不定期</p>
+                    <p class="text-emerald-700 font-semibold mt-1">事前メール相談で日時調整</p>
+                </div>
+                <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-100">
+                    <div class="text-xl mb-1">🏓</div>
+                    <h4 class="font-bold text-amber-900 text-sm mb-1">卓球（随時）</h4>
+                    <p><strong>会場:</strong> 第2運動公園 / 駒林体育館 / 上野台体育館 / 総合体育館（複数施設）</p>
+                    <p><strong>開催:</strong> 週末・不定期</p>
+                    <p class="text-amber-700 font-semibold mt-1">事前メール相談で日時調整</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 bg-slate-50 rounded-xl p-3">
+                ⚠️ 施設の都合・天候等により臨時中止になる場合があります。初めての方は必ず<strong>事前にメール（info@fujimino.space）でご確認</strong>の上お越しください。
+            </p>
         </section>
 
     </main>

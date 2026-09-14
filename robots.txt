@@ -1,0 +1,8 @@
+# robots.txt for ふじみ野初心会総合スポーツクラブ
+# https://fujimirv.jptungri.shop/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://fujimirv.jptungri.shop/sitemap.xml

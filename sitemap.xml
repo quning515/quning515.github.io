@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Japanese (Default / Primary) -->
+  <url>
+    <loc>https://fujimirv.jptungri.shop/index.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ja"      href="https://fujimirv.jptungri.shop/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en"      href="https://fujimirv.jptungri.shop/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html"/>
+    <xhtml:link rel="alternate" hreflang="vi"      href="https://fujimirv.jptungri.shop/index_vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html"/>
+  </url>
+
+  <!-- English -->
+  <url>
+    <loc>https://fujimirv.jptungri.shop/index_en.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ja"      href="https://fujimirv.jptungri.shop/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en"      href="https://fujimirv.jptungri.shop/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html"/>
+    <xhtml:link rel="alternate" hreflang="vi"      href="https://fujimirv.jptungri.shop/index_vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html"/>
+  </url>
+
+  <!-- Simplified Chinese -->
+  <url>
+    <loc>https://fujimirv.jptungri.shop/index_zh.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ja"      href="https://fujimirv.jptungri.shop/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en"      href="https://fujimirv.jptungri.shop/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html"/>
+    <xhtml:link rel="alternate" hreflang="vi"      href="https://fujimirv.jptungri.shop/index_vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html"/>
+  </url>
+
+  <!-- Traditional Chinese -->
+  <url>
+    <loc>https://fujimirv.jptungri.shop/index_zh-tw.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ja"      href="https://fujimirv.jptungri.shop/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en"      href="https://fujimirv.jptungri.shop/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html"/>
+    <xhtml:link rel="alternate" hreflang="vi"      href="https://fujimirv.jptungri.shop/index_vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html"/>
+  </url>
+
+  <!-- Vietnamese -->
+  <url>
+    <loc>https://fujimirv.jptungri.shop/index_vi.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ja"      href="https://fujimirv.jptungri.shop/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en"      href="https://fujimirv.jptungri.shop/index_en.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://fujimirv.jptungri.shop/index_zh.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://fujimirv.jptungri.shop/index_zh-tw.html"/>
+    <xhtml:link rel="alternate" hreflang="vi"      href="https://fujimirv.jptungri.shop/index_vi.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fujimirv.jptungri.shop/index.html"/>
+  </url>
+
+</urlset>
