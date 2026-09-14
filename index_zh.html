@@ -258,6 +258,14 @@
                 <!-- Badminton -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
+                        <div class="relative overflow-hidden rounded-xl mb-4 h-48 bg-slate-100 group cursor-pointer" onclick="openImageModal('pics/badminton.jpg', '羽毛球场地（大井小学校体育馆）')">
+                            <img src="pics/badminton.jpg" alt="羽毛球场地（大井小学校体育馆）" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-slate-900/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                                <span class="bg-slate-900/75 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md">
+                                    🔍 点击查看原图
+                                </span>
+                            </div>
+                        </div>
                         <span
                             class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸
                             羽毛球</span>
@@ -283,6 +291,14 @@
                 <!-- Tennis -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
+                        <div class="relative overflow-hidden rounded-xl mb-4 h-48 bg-slate-100 group cursor-pointer" onclick="openImageModal('pics/tennis.jpg', '网球场地（运动公园网球场）')">
+                            <img src="pics/tennis.jpg" alt="网球场地（运动公园网球场）" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-slate-900/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                                <span class="bg-slate-900/75 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md">
+                                    🔍 点击查看原图
+                                </span>
+                            </div>
+                        </div>
                         <span
                             class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-emerald-100 inline-block mb-3">🎾
                             网球</span>
@@ -307,6 +323,14 @@
                 <!-- Table Tennis -->
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 flex flex-col justify-between">
                     <div>
+                        <div class="relative overflow-hidden rounded-xl mb-4 h-48 bg-slate-100 group cursor-pointer" onclick="openImageModal('pics/table tennis.jpg', '乒乓球场地（体育馆）')">
+                            <img src="pics/table tennis.jpg" alt="乒乓球场地（体育馆）" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy">
+                            <div class="absolute inset-0 bg-slate-900/25 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                                <span class="bg-slate-900/75 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-lg flex items-center gap-1.5 shadow-md">
+                                    🔍 点击查看原图
+                                </span>
+                            </div>
+                        </div>
                         <span
                             class="bg-amber-50 text-amber-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-amber-100 inline-block mb-3">🏓
                             乒乓球</span>
@@ -333,6 +357,22 @@
         </section>
 
     </main>
+
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 z-50 transition-all duration-300"
+        onclick="closeImageModal()">
+        <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center select-none" onclick="event.stopPropagation()">
+            <button onclick="closeImageModal()"
+                class="absolute -top-11 right-0 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full w-9 h-9 flex items-center justify-center text-lg font-bold backdrop-blur-sm transition">
+                ✕
+            </button>
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10 bg-black/40">
+                <img id="modalImage" src="" alt="" class="max-w-full max-h-[78vh] object-contain block mx-auto">
+            </div>
+            <p id="modalCaption" class="text-white/90 text-sm mt-3 font-medium text-center px-4"></p>
+        </div>
+    </div>
 
     <div id="joinModal"
         class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
@@ -394,6 +434,24 @@
     </footer>
 
     <script>
+        function openImageModal(src, caption) {
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImage');
+            const cap = document.getElementById('modalCaption');
+            img.src = src;
+            img.alt = caption || '';
+            cap.textContent = caption || '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
         function openJoinModal() { document.getElementById('joinModal').classList.remove('hidden'); document.getElementById('joinModal').classList.add('flex'); }
         function closeJoinModal() { document.getElementById('joinModal').classList.remove('flex'); document.getElementById('joinModal').classList.add('hidden'); }
 
@@ -416,6 +474,14 @@
             closeJoinModal();
             alert("感谢您的注册！确认后，我们将通过代表邮箱（info@fujimino.space）与您联系。");
         }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+                if (typeof closeJoinModal === 'function') closeJoinModal();
+                if (typeof closeContactModal === 'function') closeContactModal();
+            }
+        });
     </script>
 </body>
 
