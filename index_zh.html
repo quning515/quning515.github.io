@@ -130,6 +130,10 @@
                     class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
                     <span>📅</span> 活动日程日历
                 </a>
+                <a href="#access"
+                    class="bg-indigo-700/80 hover:bg-indigo-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
+                    <span>📍</span> 场地与交通
+                </a>
 
 
                 <!-- Language Switcher -->
@@ -182,7 +186,7 @@
                     <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100">
                         <div class="text-2xl mb-1">🏸</div>
                         <h4 class="font-bold text-indigo-900 text-sm">羽毛球</h4>
-                        <p class="text-xs text-slate-600 mt-1">每周六晚大井小学校固定！初学者・外籍人士众多，每次100日元。</p>
+                        <p class="text-xs text-slate-600 mt-1">每周六晚以大井小学为主！综合体育馆等也可进行，1回100日元。</p>
                     </div>
                     <div class="bg-emerald-50/70 p-3.5 rounded-xl border border-emerald-100">
                         <div class="text-2xl mb-1">🎾</div>
@@ -269,20 +273,22 @@
                         <span
                             class="bg-indigo-50 text-indigo-700 text-xs font-semibold px-2.5 py-1 rounded-xl border border-indigo-100 inline-block mb-3">🏸
                             羽毛球</span>
-                        <h4 class="font-bold text-slate-900 text-base mb-2">大井小学校 周六晚固定练习会</h4>
-                        <div class="space-y-1 text-xs text-slate-600 mb-4">
-                            <p>📍 <strong>地点:</strong> 富士见野市立大井小学校 体育馆</p>
-                            <p>📅 <strong>时间:</strong> 每周六 18:00～20:00</p>
+                        <h4 class="font-bold text-slate-900 text-base mb-2">羽毛球练习会（以大井小学校 周六晚为主）</h4>
+                        <div class="space-y-1.5 text-xs text-slate-600 mb-4">
+                            <p>📍 <strong>主要地点:</strong> 富士见野市立大井小学校 体育馆（每周六晚基本固定）</p>
+                            <p>🏢 <strong>其他场地:</strong> 综合体育馆 / 上野台体育馆 / 驹林体育馆 / 第2运动公园（有时在此活动）</p>
+                            <p>📅 <strong>时间:</strong> 每周六 18:00～20:00（基本）</p>
                             <p>💰 <strong>费用:</strong> 每次 100日元</p>
                             <p>👥 <strong>特色:</strong> 初学者・外籍人士众多</p>
                         </div>
                         <p class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl mb-4">
-                            每周六晚固定练习！以温馨的氛围享受基础练习和比赛。请提前发邮件联系。<br>
+                            每周练习基本是在<strong>大井小学校体育馆</strong>！<br>
+                            根据预约安排，有时也会在<strong>综合体育馆、上野台体育馆、驹林体育馆、第2运动公园</strong>等场地进行活动。以温馨的氛围享受基础练习和比赛。请提前发邮件联系。<br>
                             <span class="text-amber-600 font-bold block mt-1">⚠️ 请务必携带室内运动鞋。</span>
-                            <span class="text-rose-600 font-bold block mt-1.5">※活动有临时取消的可能，初次参加请务必提前联系，以免空跑。</span>
+                            <span class="text-rose-600 font-bold block mt-1.5">※场地及活动时间可能因预约情况调整或临时取消。初次参加请务必提前发邮件确认当天的具体场地，以免空跑。</span>
                         </p>
                     </div>
-                    <button onclick="openContactModal('羽毛球联系窗口', '大井小学校 周六晚固定练习会')"
+                    <button onclick="openContactModal('羽毛球联系窗口', '羽毛球练习会（以大井小学校 周六晚为主）')"
                         class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-xl text-xs transition">
                         发邮件咨询・申请参加
                     </button>
@@ -354,6 +360,117 @@
                 </div>
 
             </div>
+        </section>
+
+        <!-- =================== ACCESS & VENUE SECTION =================== -->
+        <section id="access" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 space-y-6">
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <span>📍</span> 交通与各场地详细地址一览
+                </h3>
+                <p class="text-xs text-slate-500 mt-1">羽毛球每周练习基本是在大井小学校，有时也会在综合体育馆、上野台体育馆、驹林体育馆、第2运动公园进行。</p>
+            </div>
+
+            <!-- 羽毛球活动场地 -->
+            <div class="bg-indigo-50/70 p-5 rounded-2xl border border-indigo-100 space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🏸</span>
+                    <h4 class="font-bold text-indigo-950 text-base">羽毛球活动场地与详细地址</h4>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-700">
+                    <!-- 基本场地 -->
+                    <div class="bg-white p-4 rounded-xl border border-indigo-200 shadow-sm md:col-span-2">
+                        <div class="flex items-center justify-between flex-wrap gap-2 mb-1.5">
+                            <span class="bg-indigo-600 text-white font-bold px-2 py-0.5 rounded text-[11px]">每周固定练习基本场地</span>
+                            <a href="https://maps.google.com/?q=埼玉県ふじみ野市苗間37" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center gap-1">
+                                打开Google地图 ↗
+                            </a>
+                        </div>
+                        <h5 class="font-bold text-slate-900 text-sm">富士见野市立大井小学校 体育馆（ふじみ野市立大井小学校）</h5>
+                        <p class="text-slate-600 mt-1">📮 <strong>地址:</strong> 〒356-0052 埼玉県ふじみ野市苗間37</p>
+                        <p class="text-slate-600">📅 <strong>时间:</strong> 每周六 18:00〜20:00（基本固定）</p>
+                        <p class="text-indigo-600 text-[11px] mt-1">🚆 交通：东武东上线 富士见野站（ふじみ野駅）东口 步行约12分 / 鹤濑站（鶴瀬駅）</p>
+                    </div>
+
+                    <!-- 综合体育馆 -->
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">可能进行场地</span>
+                            <a href="https://maps.google.com/?q=埼玉県ふじみ野市大井武蔵野1392-1" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 text-[11px]">地图 ↗</a>
+                        </div>
+                        <h5 class="font-bold text-slate-900 text-xs">富士见野市立综合体育馆（ふじみ野市立総合体育館）</h5>
+                        <p class="text-slate-500 text-[11px] mt-0.5">📮 〒356-0053 埼玉県ふじみ野市大井武蔵野1392-1</p>
+                    </div>
+
+                    <!-- 上野台体育馆 -->
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">可能进行场地</span>
+                            <a href="https://maps.google.com/?q=埼玉県ふじみ野市福岡1-1-3" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 text-[11px]">地图 ↗</a>
+                        </div>
+                        <h5 class="font-bold text-slate-900 text-xs">富士见野市 上野台体育馆（上野台体育館）</h5>
+                        <p class="text-slate-500 text-[11px] mt-0.5">📮 〒356-0004 埼玉県ふじみ野市福岡1-1-3</p>
+                    </div>
+
+                    <!-- 驹林体育馆 -->
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">可能进行场地</span>
+                            <a href="https://maps.google.com/?q=埼玉県ふじみ野市駒林28" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 text-[11px]">地图 ↗</a>
+                        </div>
+                        <h5 class="font-bold text-slate-900 text-xs">富士见野市 驹林体育馆（駒林体育館）</h5>
+                        <p class="text-slate-500 text-[11px] mt-0.5">📮 〒356-0038 埼玉県ふじみ野市駒林28</p>
+                    </div>
+
+                    <!-- 第2运动公园 -->
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center justify-between gap-2 mb-1">
+                            <span class="bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">可能进行场地</span>
+                            <a href="https://maps.google.com/?q=埼玉県ふじみ野市福岡5" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 text-[11px]">地图 ↗</a>
+                        </div>
+                        <h5 class="font-bold text-slate-900 text-xs">富士见野市 第2运动公园 体育馆（第2運動公園）</h5>
+                        <p class="text-slate-500 text-[11px] mt-0.5">📮 〒356-0004 埼玉県ふじみ野市福岡5</p>
+                    </div>
+                </div>
+                <p class="text-[11px] text-indigo-700">※ 每周练习基本是在<strong>大井小学校</strong>，有时也会在上述场地进行。初次参加前请务必发邮件确认当天的具体场地。</p>
+            </div>
+
+            <!-- 网球与乒乓球场地 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700">
+                <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xl">🎾</span>
+                            <h4 class="font-bold text-emerald-900 text-sm">网球场地（随时）</h4>
+                        </div>
+                        <span class="text-emerald-700 font-semibold text-[11px]">周末夜间为主・需提前商量</span>
+                    </div>
+                    <div class="space-y-1.5 text-slate-600">
+                        <p><strong>地点:</strong> 富士见野市立体育中心网球场 / 富士见野市运动公园</p>
+                        <p>📮 <strong>地址:</strong> 埼玉県ふじみ野市大井武蔵野1392-1 / 福岡5</p>
+                        <p class="text-emerald-700 text-[11px]">※ 请提前发邮件（info@fujimino.space）协商具体日程和场地。</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xl">🏓</span>
+                            <h4 class="font-bold text-amber-900 text-sm">乒乓球场地（随时）</h4>
+                        </div>
+                        <span class="text-amber-700 font-semibold text-[11px]">周末不定期・需提前商量</span>
+                    </div>
+                    <div class="space-y-1.5 text-slate-600">
+                        <p><strong>地点:</strong> 第2运动公园（福岡5）/ 驹林体育馆（駒林28）/ 上野台体育馆（福岡1-1-3）/ 综合体育馆（大井武蔵野1392-1）</p>
+                        <p class="text-amber-700 text-[11px]">※ 使用市内各体育馆设施。请发邮件协商适合的时间。</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-500 bg-slate-50 rounded-xl p-3 border border-slate-100">
+                ⚠️ 由于学校及市政设施安排，场地可能会有临时变更或休馆中止的情况。第一次参加者请务必<strong>提前发邮件（info@fujimino.space）确认当天的具体活动场地与时间</strong>，以免跑空。
+            </p>
         </section>
 
     </main>
