@@ -714,23 +714,6 @@
     </footer>
 
     <script>
-        function openBookingPopup(e) {
-            if (e && e.preventDefault) e.preventDefault();
-            const url = 'https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38';
-            const width = 480;
-            const height = 800;
-            const left = Math.max(0, Math.floor((window.screen.width - width) / 2));
-            const top = Math.max(0, Math.floor((window.screen.height - height) / 2));
-            const popup = window.open(
-                url,
-                'BookingWindow',
-                `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`
-            );
-            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            } else {
-                popup.focus();
-            }
         }
 
         function openImageModal(src, caption) {

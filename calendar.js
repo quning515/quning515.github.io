@@ -661,7 +661,6 @@
                 badgeHtml = `<span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md">${t.remainingText(slot.remainingPeople, slot.capacity)}</span>`;
                 actionBtnHtml = `
                     <a href="${bookingUrl}" target="_blank" rel="noopener noreferrer"
-                       onclick="openBookingWindow(event, '${bookingUrl}')"
                        class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-md shadow-emerald-600/20 transition-all hover:scale-102 active:scale-98 flex items-center justify-center gap-1.5">
                        <span>👉</span> ${t.bookBtn}
                     </a>
@@ -710,25 +709,6 @@
             `;
         }
     }
-
-    // 辅助：打开预约小弹窗（如果用户点击卡片里的按钮）
-    window.openBookingWindow = function (e, url) {
-        if (e && e.preventDefault) e.preventDefault();
-        const width = 480;
-        const height = 800;
-        const left = Math.max(0, Math.floor((window.screen.width - width) / 2));
-        const top = Math.max(0, Math.floor((window.screen.height - height) / 2));
-        const popup = window.open(
-            url,
-            'BookingWindow',
-            `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`
-        );
-        if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-            window.open(url, '_blank', 'noopener,noreferrer');
-        } else {
-            popup.focus();
-        }
-    };
 
     // 全局刷新钩子
     window.refreshSportsCalendar = function () {
