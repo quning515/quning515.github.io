@@ -111,6 +111,7 @@
             color: #fff;
             font-weight: 700;
         }
+            html { scroll-behavior: smooth; }
     </style>
 </head>
 
@@ -126,7 +127,7 @@
                 </div>
             </div>
             <nav class="flex items-center gap-2 flex-wrap justify-center">
-                <a href="https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38" target="_blank" rel="noopener noreferrer"
+                <a href="#calendar-section"
                     class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
                     <span>📅</span> 活動日程日曆
                 </a>
@@ -163,7 +164,7 @@
                 以埼玉縣富士見野市為中心活動！羽毛球每週六晚在大井小學校固定舉行。參加前請提前發郵件聯繫。
             </p>
             <div class="pt-4 flex flex-wrap justify-center gap-3">
-                <a href="https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38" target="_blank" rel="noopener noreferrer"
+                <a href="#calendar-section"
                     class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2">
                     <span>📅</span> 查看活動舉辦日曆（日程・預約）
                 </a>
@@ -254,7 +255,12 @@
             </div>
         </section>
 
-        <section id="events" class="space-y-4">
+        <!-- 活動開催カレンダー (自前描画コンポーネント) -->
+        <section id="calendar-section" class="space-y-4">
+            <div id="calendar-app"></div>
+        </section>
+
+<section id="events" class="space-y-4">
             <h3 class="text-xl font-bold text-slate-900">📅 各運動詳情與參加方式</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -439,6 +445,25 @@
     </footer>
 
     <script>
+        function openBookingPopup(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const url = 'https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38';
+            const width = 480;
+            const height = 800;
+            const left = Math.max(0, Math.floor((window.screen.width - width) / 2));
+            const top = Math.max(0, Math.floor((window.screen.height - height) / 2));
+            const popup = window.open(
+                url,
+                'BookingWindow',
+                `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`
+            );
+            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                popup.focus();
+            }
+        }
+
         function openImageModal(src, caption) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
@@ -488,6 +513,8 @@
             }
         });
     </script>
+    <script>window.CALENDAR_LANG = 'zh-tw';</script>
+    <script src="calendar.js"></script>
 </body>
 
 </html>

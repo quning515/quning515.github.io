@@ -274,6 +274,7 @@
             color: #fff;
             font-weight: 700;
         }
+            html { scroll-behavior: smooth; }
     </style>
 </head>
 
@@ -290,7 +291,7 @@
                 </div>
             </div>
             <nav class="flex items-center gap-2 flex-wrap justify-center">
-                <a href="https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38" target="_blank" rel="noopener noreferrer"
+                <a href="#calendar-section"
                     class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-3 py-2 rounded-xl text-xs shadow flex items-center gap-1 transition">
                     <span>📅</span> 活動日程カレンダー
                 </a>
@@ -329,7 +330,7 @@
                 埼玉県ふじみ野市を中心に活動中！バドミントンは毎週土曜夜に大井小学校で固定開催。ご参加は事前にメールでご連絡ください。
             </p>
             <div class="pt-4 flex flex-wrap justify-center gap-3">
-                <a href="https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38" target="_blank" rel="noopener noreferrer"
+                <a href="#calendar-section"
                     class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl text-sm shadow-lg transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center gap-2">
                     <span>📅</span> 活動開催カレンダー（日程確認・予約）
                 </a>
@@ -428,7 +429,12 @@
         </section>
 
         <!-- STREAMING_CHUNK:Rendering Event Cards Grid... -->
-        <section id="events" class="space-y-4">
+        <!-- 活動開催カレンダー (自前描画コンポーネント) -->
+        <section id="calendar-section" class="space-y-4">
+            <div id="calendar-app"></div>
+        </section>
+
+<section id="events" class="space-y-4">
             <h3 class="text-xl font-bold text-slate-900">📅 各スポーツの詳細と参加方法</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -708,6 +714,25 @@
     </footer>
 
     <script>
+        function openBookingPopup(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const url = 'https://fujimirv.jptungri.shop/group-activity-booking_ja.html?activityId=38';
+            const width = 480;
+            const height = 800;
+            const left = Math.max(0, Math.floor((window.screen.width - width) / 2));
+            const top = Math.max(0, Math.floor((window.screen.height - height) / 2));
+            const popup = window.open(
+                url,
+                'BookingWindow',
+                `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes`
+            );
+            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                window.open(url, '_blank', 'noopener,noreferrer');
+            } else {
+                popup.focus();
+            }
+        }
+
         function openImageModal(src, caption) {
             const modal = document.getElementById('imageModal');
             const img = document.getElementById('modalImage');
@@ -747,6 +772,8 @@
             }
         });
     </script>
+    <script>window.CALENDAR_LANG = 'ja';</script>
+    <script src="calendar.js"></script>
 </body>
 
 </html>
