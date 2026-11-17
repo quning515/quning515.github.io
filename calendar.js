@@ -6,6 +6,7 @@
 (function () {
     const API_BASE = 'https://fujimirv.jptungri.shop';
     const ACTIVITY_ID = 38;
+    let _autoAdvanceCount = 0;  // 自动跳月计数器（防无限循环）
 
     // 多语言字典
     const I18N = {
@@ -20,6 +21,7 @@
             prevMonth: '◀ 前月',
             nextMonth: '次月 ▶',
             todayBtn: '今月',
+            todayTag: '今日',
             loadingText: '日程データを読み込み中...',
             errorText: '日程の読み込みに失敗しました。再試行してください。',
             retryBtn: '再読み込み',
@@ -44,6 +46,7 @@
             prevMonth: '◀ 上月',
             nextMonth: '下月 ▶',
             todayBtn: '本月',
+            todayTag: '今天',
             loadingText: '正在加载排期数据...',
             errorText: '排期加载失败，请重试。',
             retryBtn: '重新加载',
@@ -68,6 +71,7 @@
             prevMonth: '◀ 上月',
             nextMonth: '下月 ▶',
             todayBtn: '本月',
+            todayTag: '今天',
             loadingText: '正在載入排程資料...',
             errorText: '排程載入失敗，請重試。',
             retryBtn: '重新載入',
@@ -92,6 +96,7 @@
             prevMonth: '◀ Prev',
             nextMonth: 'Next ▶',
             todayBtn: 'Today',
+            todayTag: 'Today',
             loadingText: 'Loading schedule data...',
             errorText: 'Failed to load schedule. Please retry.',
             retryBtn: 'Retry',
@@ -116,6 +121,7 @@
             prevMonth: '◀ Tháng trước',
             nextMonth: 'Tháng sau ▶',
             todayBtn: 'Tháng này',
+            todayTag: 'Hôm nay',
             loadingText: 'Đang tải dữ liệu lịch...',
             errorText: 'Tải lịch thất bại. Vui lòng thử lại.',
             retryBtn: 'Thử lại',
@@ -158,6 +164,13 @@
         return `${y}-${padZero(m)}`;
     }
 
+    function getTodayDateStr() {
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
     function formatFullDate(y, m, d) {
         return `${y}-${padZero(m)}-${padZero(d)}`;
     }
@@ -168,58 +181,58 @@
         if (!container) return;
 
         container.innerHTML = `
-        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 space-y-5">
+        <div class="bg-white rounded-2xl p-3.5 sm:p-6 shadow-sm border border-slate-100 space-y-4 sm:space-y-5">
             <!-- 头部 -->
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-100 pb-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 border-b border-slate-100 pb-3 sm:pb-4">
                 <div>
-                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
                         <span>📅</span> <span>${t.title}</span>
                     </h3>
                     <p class="text-xs text-slate-500 mt-1">
                         ${t.desc}
                     </p>
                 </div>
-                <!-- 切换月份按钮组 -->
-                <div class="flex items-center gap-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200 text-xs font-semibold">
-                    <button id="cal-prev-btn" class="px-2.5 py-1.5 rounded-lg hover:bg-white hover:shadow-xs transition text-slate-700 font-bold" title="${t.prevMonth}">
+                <!-- 切换月份按钮组（手机端自适应宽度） -->
+                <div class="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-1 bg-slate-50 p-1 sm:p-1.5 rounded-xl border border-slate-200 text-xs font-semibold">
+                    <button id="cal-prev-btn" class="px-2 py-1.5 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-white hover:shadow-xs transition text-slate-700 font-bold active:scale-95" title="${t.prevMonth}">
                         ${t.prevMonth}
                     </button>
-                    <span id="cal-month-label" class="px-3 py-1 font-bold text-slate-900 text-sm min-w-[110px] text-center select-none">
+                    <span id="cal-month-label" class="px-2 sm:px-3 py-1 font-bold text-slate-900 text-xs sm:text-sm text-center select-none flex-1 sm:flex-none sm:min-w-[110px]">
                         ${currentYear}年 ${currentMonth}月
                     </span>
-                    <button id="cal-next-btn" class="px-2.5 py-1.5 rounded-lg hover:bg-white hover:shadow-xs transition text-slate-700 font-bold" title="${t.nextMonth}">
+                    <button id="cal-next-btn" class="px-2 py-1.5 sm:px-2.5 sm:py-1.5 rounded-lg hover:bg-white hover:shadow-xs transition text-slate-700 font-bold active:scale-95" title="${t.nextMonth}">
                         ${t.nextMonth}
                     </button>
-                    <button id="cal-today-btn" class="ml-1 px-2.5 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-lg transition font-bold">
+                    <button id="cal-today-btn" class="ml-0.5 sm:ml-1 px-2 sm:px-2.5 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-lg transition font-bold active:scale-95">
                         ${t.todayBtn}
                     </button>
                 </div>
             </div>
 
-            <!-- 图例说明 -->
-            <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 bg-slate-50/80 p-3 rounded-xl border border-slate-100">
-                <div class="flex flex-wrap items-center gap-4">
+            <!-- 图例说明（手机端紧凑换行） -->
+            <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs text-slate-500 bg-slate-50/80 p-2.5 sm:p-3 rounded-xl border border-slate-100">
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-4">
                     <span class="font-bold text-slate-700">${t.legend}</span>
-                    <span class="inline-flex items-center gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> ${t.legendAvailable}
+                    <span class="inline-flex items-center gap-1">
+                        <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500"></span> ${t.legendAvailable}
                     </span>
-                    <span class="inline-flex items-center gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> ${t.legendFull}
+                    <span class="inline-flex items-center gap-1">
+                        <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-rose-500"></span> ${t.legendFull}
                     </span>
-                    <span class="inline-flex items-center gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span> ${t.legendNone}
+                    <span class="inline-flex items-center gap-1">
+                        <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-slate-300"></span> ${t.legendNone}
                     </span>
                 </div>
                 <a href="${API_BASE}/group-activity-booking_ja.html?activityId=${ACTIVITY_ID}" target="_blank" rel="noopener noreferrer"
-                    class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center gap-1 transition">
+                    class="text-indigo-600 hover:text-indigo-800 font-semibold inline-flex items-center gap-1 transition text-[11px] sm:text-xs">
                     ${t.openDirectly}
                 </a>
             </div>
 
             <!-- 日历表格 -->
-            <div class="space-y-2">
+            <div class="space-y-1.5 sm:space-y-2">
                 <!-- 星期标头 -->
-                <div class="grid grid-cols-7 gap-1 text-center font-bold text-xs py-2 bg-slate-100/90 rounded-xl text-slate-600 select-none">
+                <div class="grid grid-cols-7 gap-1 text-center font-bold text-[11px] sm:text-xs py-1.5 sm:py-2 bg-slate-100/90 rounded-xl text-slate-600 select-none">
                     <div class="text-rose-500">${t.daysOfWeek[0]}</div>
                     <div>${t.daysOfWeek[1]}</div>
                     <div>${t.daysOfWeek[2]}</div>
@@ -229,8 +242,8 @@
                     <div class="text-indigo-600">${t.daysOfWeek[6]}</div>
                 </div>
 
-                <!-- 日历格子网格 -->
-                <div id="cal-grid" class="grid grid-cols-7 gap-1.5 min-h-[300px] relative">
+                <!-- 日历格子网格（手机端 gap-1，最小高度自适应） -->
+                <div id="cal-grid" class="grid grid-cols-7 gap-1 sm:gap-1.5 min-h-[260px] sm:min-h-[300px] relative">
                     <!-- 动态生成 -->
                 </div>
             </div>
@@ -270,6 +283,43 @@
         loadCalendar();
     }
 
+    // 专用于自动跳月（不重置 _autoAdvanceCount）
+    async function loadCalendarForAutoAdvance() {
+        renderLoading();
+        const yearMonthStr = formatYearMonth(currentYear, currentMonth);
+
+        const newApiUrl = `${API_BASE}/api/public/group-activities/${ACTIVITY_ID}/calendar?month=${yearMonthStr}`;
+        try {
+            const resp = await fetch(newApiUrl, {
+                headers: { 'Accept': 'application/json' },
+                mode: 'cors'
+            });
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data && data.calendar) {
+                    processCalendarData(data);
+                    return;
+                }
+            }
+        } catch (e) { /* fallback */ }
+
+        // Fallback
+        const fallbackUrl = `${API_BASE}/api/group-activities/${ACTIVITY_ID}/booking-data`;
+        try {
+            const resp2 = await fetch(fallbackUrl, { mode: 'cors' });
+            if (resp2.ok) {
+                const raw = await resp2.json();
+                const adapted = adaptBookingData(raw, currentYear, currentMonth);
+                processCalendarData(adapted);
+                return;
+            }
+        } catch (e2) { /* give up */ }
+
+        // All APIs failed
+        _autoAdvanceCount = 0;
+        clearSlotsView();
+    }
+
     function goToToday() {
         const today = new Date();
         currentYear = today.getFullYear();
@@ -297,6 +347,7 @@
 
     // 主数据加载流程：优先调用新 API，失败时调用备选接口自算
     async function loadCalendar() {
+        _autoAdvanceCount = 0;  // 每次手动切换月份时重置
         renderLoading();
         const yearMonthStr = formatYearMonth(currentYear, currentMonth);
 
@@ -356,7 +407,7 @@
         const settings = raw.settings || [];
         const reservationCounts = raw.reservationCounts || {};
         const overrides = raw.slotTitleOverrides || [];
-        const todayStr = new Date().toISOString().slice(0, 10);
+        const todayStr = getTodayDateStr();
 
         const calendarList = [];
         const dailySlots = {};
@@ -478,23 +529,31 @@
 
         renderGrid();
 
-        // 默认选中逻辑：优先选中传入的 selectedDate，或者选今天，或者当月第一个有排期的未来日期
-        const todayStr = new Date().toISOString().slice(0, 10);
-        let targetDateToSelect = data.selectedDate;
+        // 默认选中逻辑：始终优先高亮并选中离今天最近的最新活动日期（直近の開催予定日）
+        const todayStr = getTodayDateStr();
+        let targetDateToSelect = null;
 
-        if (!targetDateToSelect) {
-            const todaySlot = calendarDaysData.find(d => d.date === todayStr && d.available);
-            if (todaySlot) {
-                targetDateToSelect = todayStr;
+        // 1. 最优先：寻找本月内 >= 今天且有排期的最近一天（即离当前最近的最新活动）
+        const nearestFuture = calendarDaysData.find(d => d.available && d.date >= todayStr);
+        if (nearestFuture) {
+            targetDateToSelect = nearestFuture.date;
+            _autoAdvanceCount = 0;
+        } else if (_autoAdvanceCount < 6) {
+            // 本月未来已无活动（例如本月排期已过完），自动向前翻月查找最新活动
+            _autoAdvanceCount++;
+            currentMonth++;
+            if (currentMonth > 12) { currentMonth = 1; currentYear++; }
+            updateMonthLabel();
+            loadCalendarForAutoAdvance();
+            return;
+        } else {
+            // 查找多月后若无未来活动，则选择当月首个有排期或指定的日期
+            _autoAdvanceCount = 0;
+            if (data.selectedDate && calendarDaysData.some(d => d.date === data.selectedDate && d.available)) {
+                targetDateToSelect = data.selectedDate;
             } else {
-                const firstAvailable = calendarDaysData.find(d => d.available && !d.isPast);
-                if (firstAvailable) {
-                    targetDateToSelect = firstAvailable.date;
-                } else {
-                    // 若无未来排期，取当月第一个有排期的
-                    const anySlot = calendarDaysData.find(d => d.available);
-                    targetDateToSelect = anySlot ? anySlot.date : null;
-                }
+                const anySlot = calendarDaysData.find(d => d.available);
+                targetDateToSelect = anySlot ? anySlot.date : null;
             }
         }
 
@@ -517,10 +576,10 @@
 
         // 补足 1 号前面的空白格子
         for (let i = 0; i < firstDayIdx; i++) {
-            html += `<div class="bg-slate-50/50 rounded-xl border border-transparent min-h-[58px] sm:min-h-[70px]"></div>`;
+            html += `<div class="bg-slate-50/40 rounded-xl border border-transparent min-h-[52px] sm:min-h-[70px]"></div>`;
         }
 
-        const todayStr = new Date().toISOString().slice(0, 10);
+        const todayStr = getTodayDateStr();
 
         // 渲染每个日子
         calendarDaysData.forEach(dayItem => {
@@ -537,20 +596,20 @@
             let ringClass = '';
 
             if (isSelected) {
-                ringClass = 'ring-2 ring-indigo-600 bg-indigo-50/60 border-indigo-400 font-extrabold shadow-sm';
+                ringClass = 'ring-2 ring-indigo-600 bg-indigo-50/70 border-indigo-500 font-extrabold shadow-sm';
             } else if (isToday) {
-                ringClass = 'border-indigo-300 bg-indigo-50/30';
+                ringClass = 'border-indigo-400 bg-indigo-50/40 ring-1 ring-indigo-300';
             }
 
-            // 状态徽章
+            // 状态徽章（手机端紧凑适配，字号9px，防止折行溢出）
             let badgeHtml = '';
             if (hasSlots) {
                 if (isPast) {
-                    badgeHtml = `<span class="mt-1 text-[10px] px-1.5 py-0.5 rounded-md font-semibold bg-slate-100 text-slate-500">${dayItem.statusLabel || '-'}</span>`;
+                    badgeHtml = `<span class="mt-0.5 sm:mt-1 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded font-semibold bg-slate-100 text-slate-500 leading-tight truncate max-w-full text-center">${dayItem.statusLabel || '-'}</span>`;
                 } else if (isFull) {
-                    badgeHtml = `<span class="mt-1 text-[10px] px-1.5 py-0.5 rounded-md font-bold bg-rose-100 text-rose-700 animate-pulse">${dayItem.statusLabel || t.fullBtn}</span>`;
+                    badgeHtml = `<span class="mt-0.5 sm:mt-1 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-rose-100 text-rose-700 animate-pulse leading-tight truncate max-w-full text-center">${dayItem.statusLabel || t.fullBtn}</span>`;
                 } else {
-                    badgeHtml = `<span class="mt-1 text-[10px] px-1.5 py-0.5 rounded-md font-bold bg-emerald-100 text-emerald-800 shadow-xs">${dayItem.statusLabel}</span>`;
+                    badgeHtml = `<span class="mt-0.5 sm:mt-1 text-[9px] sm:text-[10px] px-1 sm:px-1.5 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 shadow-xs leading-tight truncate max-w-full text-center">${dayItem.statusLabel}</span>`;
                 }
             }
 
@@ -561,14 +620,19 @@
             if (dayOfWeek === 0) dayNumColor = 'text-rose-600';
             if (dayOfWeek === 6) dayNumColor = 'text-indigo-600';
 
+            // “今日”字样徽章：显眼标识，在手机端清晰可辨
+            const todayBadgeHtml = isToday
+                ? `<span class="text-[8px] sm:text-[9px] font-black text-indigo-700 bg-indigo-100 border border-indigo-200 px-1 py-0.2 rounded leading-none whitespace-nowrap tracking-tighter" title="${t.todayTag}">${t.todayTag}</span>`
+                : '';
+
             html += `
             <div data-date="${dayItem.date}"
-                 class="cal-day-cell relative rounded-xl border p-1.5 sm:p-2 min-h-[58px] sm:min-h-[72px] flex flex-col justify-between items-center transition-all ${bgClass} ${borderClass} ${cursorClass} ${ringClass}">
-                <div class="flex items-center justify-between w-full">
-                    <span class="text-xs sm:text-sm font-bold ${dayNumColor}">
+                 class="cal-day-cell relative rounded-xl border p-1 sm:p-2 min-h-[52px] sm:min-h-[70px] flex flex-col justify-between items-center transition-all ${bgClass} ${borderClass} ${cursorClass} ${ringClass}">
+                <div class="flex items-center justify-between w-full leading-none">
+                    <span class="text-[11px] sm:text-sm font-bold ${dayNumColor}">
                         ${dayItem.day}
                     </span>
-                    ${isToday ? '<span class="w-1.5 h-1.5 rounded-full bg-indigo-600" title="今日"></span>' : ''}
+                    ${todayBadgeHtml}
                 </div>
                 ${badgeHtml}
             </div>
@@ -592,13 +656,19 @@
 
         // 更新日历网格的高亮样式
         const grid = document.getElementById('cal-grid');
+        const todayStr = getTodayDateStr();
         if (grid) {
             grid.querySelectorAll('.cal-day-cell').forEach(cell => {
                 const d = cell.getAttribute('data-date');
+                const isCellToday = d === todayStr;
                 if (d === selectedDate) {
-                    cell.classList.add('ring-2', 'ring-indigo-600', 'bg-indigo-50/60', 'border-indigo-400', 'font-extrabold', 'shadow-sm');
+                    cell.classList.add('ring-2', 'ring-indigo-600', 'bg-indigo-50/70', 'border-indigo-500', 'font-extrabold', 'shadow-sm');
+                    if (isCellToday) cell.classList.remove('ring-1', 'ring-indigo-300');
                 } else {
-                    cell.classList.remove('ring-2', 'ring-indigo-600', 'bg-indigo-50/60', 'border-indigo-400', 'font-extrabold', 'shadow-sm');
+                    cell.classList.remove('ring-2', 'ring-indigo-600', 'bg-indigo-50/70', 'border-indigo-500', 'font-extrabold', 'shadow-sm');
+                    if (isCellToday) {
+                        cell.classList.add('border-indigo-400', 'bg-indigo-50/40', 'ring-1', 'ring-indigo-300');
+                    }
                 }
             });
         }
